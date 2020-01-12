@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1>Discover, share and live unique experieences near you.</h1>
+        <h1>{{ __('messages.slogan') }}</h1>
     </div>
 @endsection
 
