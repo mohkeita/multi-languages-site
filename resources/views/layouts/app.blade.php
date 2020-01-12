@@ -26,8 +26,20 @@
         <main class="py-4">
             @yield('content')
         </main>
+        <div class="contaner">
+            <ul>
+                @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                    <li>
+                        <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                            {{ $properties['native'] }}
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+
         <div class="container">
-            <p>{{ __('messages.cookies') }}<a href="#">{{ __('messages.learn_more') }}</a><button type="button">OK</button></p></div>
+            <p>{{ __('messages.cookies') }}<a href="#"> {{ __('messages.learn_more') }}</a><button type="button">OK</button></p></div>
     </div>
 </body>
 </html>
