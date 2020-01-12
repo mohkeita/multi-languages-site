@@ -27,8 +27,7 @@
             @yield('content')
         </main>
         <div class="container">
-            <p>By continuing to browse this site, you content to our use of cookies to improve your online experience. <a
-                    href="#">Learn more</a><button type="button">OK</button></p></div>
+            <p>{{ __('messages.cookies') }}<a href="#">{{ __('messages.learn_more') }}</a><button type="button">OK</button></p></div>
     </div>
 </body>
 </html>

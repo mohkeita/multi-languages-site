@@ -11,7 +11,7 @@
 |
 */
 
-app()->setLocale('en');
+
 
 Route::view('/', 'pages.home');
 
