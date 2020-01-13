@@ -5,8 +5,22 @@
  */
 
 require('./bootstrap');
+import Lang from 'lang.js';
+
+import messages from './messages';
+const lang = new Lang({
+    messages: messages
+});
 
 window.Vue = require('vue');
+
+Vue.mixin({
+    methods: {
+        __(...args) {
+            return lang.get(...args);
+        }
+    }
+})
 
 /**
  * The following block of code may be used to automatically register your

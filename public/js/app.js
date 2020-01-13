@@ -1932,12 +1932,8 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lang.js */ "./node_modules/lang.js/src/lang.js");
-/* harmony import */ var lang_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lang_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/src/js.cookie.js");
-/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(js_cookie__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _messages__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../messages */ "./resources/js/messages.js");
-/* harmony import */ var _messages__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_messages__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/src/js.cookie.js");
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(js_cookie__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -1946,8 +1942,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CookieBannerConsentment",
@@ -1958,19 +1952,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     handleCookieStorageApproval: function handleCookieStorageApproval() {
-      js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.set('user_has_agree_to_cookie_storage', 'true', {
+      js_cookie__WEBPACK_IMPORTED_MODULE_0___default.a.set('user_has_agree_to_cookie_storage', 'true', {
         expires: 10
       });
       this.shoudBeDisplayed = false;
     }
   },
   mounted: function mounted() {
-    var lang = new lang_js__WEBPACK_IMPORTED_MODULE_0___default.a({
-      messages: _messages__WEBPACK_IMPORTED_MODULE_2___default.a
-    });
-    console.log(lang);
-
-    if (js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.get('user_has_agree_to_cookie_storage') === undefined) {
+    if (js_cookie__WEBPACK_IMPORTED_MODULE_0___default.a.get('user_has_agree_to_cookie_storage') === undefined) {
       this.shoudBeDisplayed = true;
     }
   }
@@ -38871,8 +38860,10 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("p", { class: _vm.shoudBeDisplayed ? "block" : "hidden" }, [
-    _vm._v("Discover, share and live unique experieences near you.\n    "),
-    _c("a", { attrs: { href: "#" } }, [_vm._v(" Learn More")]),
+    _vm._v(_vm._s(_vm.__("messages.cookies")) + "\n    "),
+    _c("a", { attrs: { href: "#" } }, [
+      _vm._v(" " + _vm._s(_vm.__("messages.learn_more")))
+    ]),
     _vm._v(" "),
     _c(
       "button",
@@ -51052,9 +51043,15 @@ module.exports = function(module) {
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lang.js */ "./node_modules/lang.js/src/lang.js");
+/* harmony import */ var lang_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lang_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _messages__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./messages */ "./resources/js/messages.js");
+/* harmony import */ var _messages__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_messages__WEBPACK_IMPORTED_MODULE_1__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -51062,7 +51059,19 @@ module.exports = function(module) {
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+
+
+var lang = new lang_js__WEBPACK_IMPORTED_MODULE_0___default.a({
+  messages: _messages__WEBPACK_IMPORTED_MODULE_1___default.a
+});
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+Vue.mixin({
+  methods: {
+    __: function __() {
+      return lang.get.apply(lang, arguments);
+    }
+  }
+});
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -51223,1051 +51232,638 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./resources/js/messages.js ***!
   \**********************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-/*!
- *  Lang.js for Laravel localization in JavaScript.
- *
- *  @version 1.1.10
- *  @license MIT https://github.com/rmariuzzo/Lang.js/blob/master/LICENSE
- *  @site    https://github.com/rmariuzzo/Lang.js
- *  @author  Rubens Mariuzzo <rubens@mariuzzo.com>
- */
-(function (root, factory) {
-  "use strict";
-
-  if (true) {
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-  } else {}
-})(this, function () {
-  "use strict";
-
-  function inferLocale() {
-    if (typeof document !== "undefined" && document.documentElement) {
-      return document.documentElement.lang;
-    }
+module.exports = {
+  "en.auth": {
+    "failed": "These credentials do not match our records.",
+    "throttle": "Too many login attempts. Please try again in :seconds seconds."
+  },
+  "en.messages": {
+    "cookies": "By continuing to browse this site, you content to our use of cookies \n    to improve your online experience.",
+    "greeting": "Hello :name",
+    "learn_more": "learn more",
+    "slogan": "Discover, share and live unique experieences near you."
+  },
+  "en.pagination": {
+    "next": "Next &raquo;",
+    "previous": "&laquo; Previous"
+  },
+  "en.passwords": {
+    "reset": "Your password has been reset!",
+    "sent": "We have e-mailed your password reset link!",
+    "throttled": "Please wait before retrying.",
+    "token": "This password reset token is invalid.",
+    "user": "We can't find a user with that e-mail address."
+  },
+  "en.validation": {
+    "accepted": "The :attribute must be accepted.",
+    "active_url": "The :attribute is not a valid URL.",
+    "after": "The :attribute must be a date after :date.",
+    "after_or_equal": "The :attribute must be a date after or equal to :date.",
+    "alpha": "The :attribute may only contain letters.",
+    "alpha_dash": "The :attribute may only contain letters, numbers, dashes and underscores.",
+    "alpha_num": "The :attribute may only contain letters and numbers.",
+    "array": "The :attribute must be an array.",
+    "attributes": [],
+    "before": "The :attribute must be a date before :date.",
+    "before_or_equal": "The :attribute must be a date before or equal to :date.",
+    "between": {
+      "array": "The :attribute must have between :min and :max items.",
+      "file": "The :attribute must be between :min and :max kilobytes.",
+      "numeric": "The :attribute must be between :min and :max.",
+      "string": "The :attribute must be between :min and :max characters."
+    },
+    "boolean": "The :attribute field must be true or false.",
+    "confirmed": "The :attribute confirmation does not match.",
+    "custom": {
+      "attribute-name": {
+        "rule-name": "custom-message"
+      }
+    },
+    "date": "The :attribute is not a valid date.",
+    "date_equals": "The :attribute must be a date equal to :date.",
+    "date_format": "The :attribute does not match the format :format.",
+    "different": "The :attribute and :other must be different.",
+    "digits": "The :attribute must be :digits digits.",
+    "digits_between": "The :attribute must be between :min and :max digits.",
+    "dimensions": "The :attribute has invalid image dimensions.",
+    "distinct": "The :attribute field has a duplicate value.",
+    "email": "The :attribute must be a valid email address.",
+    "ends_with": "The :attribute must end with one of the following: :values.",
+    "exists": "The selected :attribute is invalid.",
+    "file": "The :attribute must be a file.",
+    "filled": "The :attribute field must have a value.",
+    "gt": {
+      "array": "The :attribute must have more than :value items.",
+      "file": "The :attribute must be greater than :value kilobytes.",
+      "numeric": "The :attribute must be greater than :value.",
+      "string": "The :attribute must be greater than :value characters."
+    },
+    "gte": {
+      "array": "The :attribute must have :value items or more.",
+      "file": "The :attribute must be greater than or equal :value kilobytes.",
+      "numeric": "The :attribute must be greater than or equal :value.",
+      "string": "The :attribute must be greater than or equal :value characters."
+    },
+    "image": "The :attribute must be an image.",
+    "in": "The selected :attribute is invalid.",
+    "in_array": "The :attribute field does not exist in :other.",
+    "integer": "The :attribute must be an integer.",
+    "ip": "The :attribute must be a valid IP address.",
+    "ipv4": "The :attribute must be a valid IPv4 address.",
+    "ipv6": "The :attribute must be a valid IPv6 address.",
+    "json": "The :attribute must be a valid JSON string.",
+    "lt": {
+      "array": "The :attribute must have less than :value items.",
+      "file": "The :attribute must be less than :value kilobytes.",
+      "numeric": "The :attribute must be less than :value.",
+      "string": "The :attribute must be less than :value characters."
+    },
+    "lte": {
+      "array": "The :attribute must not have more than :value items.",
+      "file": "The :attribute must be less than or equal :value kilobytes.",
+      "numeric": "The :attribute must be less than or equal :value.",
+      "string": "The :attribute must be less than or equal :value characters."
+    },
+    "max": {
+      "array": "The :attribute may not have more than :max items.",
+      "file": "The :attribute may not be greater than :max kilobytes.",
+      "numeric": "The :attribute may not be greater than :max.",
+      "string": "The :attribute may not be greater than :max characters."
+    },
+    "mimes": "The :attribute must be a file of type: :values.",
+    "mimetypes": "The :attribute must be a file of type: :values.",
+    "min": {
+      "array": "The :attribute must have at least :min items.",
+      "file": "The :attribute must be at least :min kilobytes.",
+      "numeric": "The :attribute must be at least :min.",
+      "string": "The :attribute must be at least :min characters."
+    },
+    "not_in": "The selected :attribute is invalid.",
+    "not_regex": "The :attribute format is invalid.",
+    "numeric": "The :attribute must be a number.",
+    "password": "The password is incorrect.",
+    "present": "The :attribute field must be present.",
+    "regex": "The :attribute format is invalid.",
+    "required": "The :attribute field is required.",
+    "required_if": "The :attribute field is required when :other is :value.",
+    "required_unless": "The :attribute field is required unless :other is in :values.",
+    "required_with": "The :attribute field is required when :values is present.",
+    "required_with_all": "The :attribute field is required when :values are present.",
+    "required_without": "The :attribute field is required when :values is not present.",
+    "required_without_all": "The :attribute field is required when none of :values are present.",
+    "same": "The :attribute and :other must match.",
+    "size": {
+      "array": "The :attribute must contain :size items.",
+      "file": "The :attribute must be :size kilobytes.",
+      "numeric": "The :attribute must be :size.",
+      "string": "The :attribute must be :size characters."
+    },
+    "starts_with": "The :attribute must start with one of the following: :values.",
+    "string": "The :attribute must be a string.",
+    "timezone": "The :attribute must be a valid zone.",
+    "unique": "The :attribute has already been taken.",
+    "uploaded": "The :attribute failed to upload.",
+    "url": "The :attribute format is invalid.",
+    "uuid": "The :attribute must be a valid UUID."
+  },
+  "es.auth": {
+    "failed": "Estas credenciales no coinciden con nuestros registros.",
+    "throttle": "Demasiados intentos de acceso. Por favor intente nuevamente en :seconds segundos."
+  },
+  "es.messages": {
+    "cookies": "Al continuar navegando por este sitio, usted se contenta con nuestro uso de cookies \n    para mejorar su experiencia en l\xEDnea",
+    "greeting": "Buenos dias :name",
+    "learn_more": "aprende m\xE1s",
+    "slogan": "Descubre, comparte y vive experiencias \xFAnicas cerca de ti."
+  },
+  "es.pagination": {
+    "next": "Siguiente &raquo;",
+    "previous": "&laquo; Anterior"
+  },
+  "es.passwords": {
+    "password": "Las contrase\xF1as deben coincidir y contener al menos 8 caracteres",
+    "reset": "\xA1Tu contrase\xF1a ha sido restablecida!",
+    "sent": "\xA1Te hemos enviado por correo el enlace para restablecer tu contrase\xF1a!",
+    "throttled": "Por favor espera antes de intentar de nuevo.",
+    "token": "El token de recuperaci\xF3n de contrase\xF1a es inv\xE1lido.",
+    "user": "No podemos encontrar ning\xFAn usuario con ese correo electr\xF3nico."
+  },
+  "es.validation": {
+    "accepted": ":attribute debe ser aceptado.",
+    "active_url": ":attribute no es una URL v\xE1lida.",
+    "after": ":attribute debe ser una fecha posterior a :date.",
+    "after_or_equal": ":attribute debe ser una fecha posterior o igual a :date.",
+    "alpha": ":attribute s\xF3lo debe contener letras.",
+    "alpha_dash": ":attribute s\xF3lo debe contener letras, n\xFAmeros y guiones.",
+    "alpha_num": ":attribute s\xF3lo debe contener letras y n\xFAmeros.",
+    "array": ":attribute debe ser un conjunto.",
+    "attributes": {
+      "address": "direcci\xF3n",
+      "age": "edad",
+      "body": "contenido",
+      "city": "ciudad",
+      "content": "contenido",
+      "country": "pa\xEDs",
+      "date": "fecha",
+      "day": "d\xEDa",
+      "description": "descripci\xF3n",
+      "email": "correo electr\xF3nico",
+      "excerpt": "extracto",
+      "first_name": "nombre",
+      "gender": "g\xE9nero",
+      "hour": "hora",
+      "last_name": "apellido",
+      "message": "mensaje",
+      "minute": "minuto",
+      "mobile": "m\xF3vil",
+      "month": "mes",
+      "name": "nombre",
+      "password": "contrase\xF1a",
+      "password_confirmation": "confirmaci\xF3n de la contrase\xF1a",
+      "phone": "tel\xE9fono",
+      "price": "precio",
+      "second": "segundo",
+      "sex": "sexo",
+      "subject": "asunto",
+      "terms": "t\xE9rminos",
+      "time": "hora",
+      "title": "t\xEDtulo",
+      "username": "usuario",
+      "year": "a\xF1o"
+    },
+    "before": ":attribute debe ser una fecha anterior a :date.",
+    "before_or_equal": ":attribute debe ser una fecha anterior o igual a :date.",
+    "between": {
+      "array": ":attribute tiene que tener entre :min - :max \xEDtems.",
+      "file": ":attribute debe pesar entre :min - :max kilobytes.",
+      "numeric": ":attribute tiene que estar entre :min - :max.",
+      "string": ":attribute tiene que tener entre :min - :max caracteres."
+    },
+    "boolean": "El campo :attribute debe tener un valor verdadero o falso.",
+    "confirmed": "La confirmaci\xF3n de :attribute no coincide.",
+    "custom": {
+      "email": {
+        "unique": "El :attribute ya ha sido registrado."
+      },
+      "password": {
+        "min": "La :attribute debe contener m\xE1s de :min caracteres"
+      }
+    },
+    "date": ":attribute no es una fecha v\xE1lida.",
+    "date_equals": ":attribute debe ser una fecha igual a :date.",
+    "date_format": ":attribute no corresponde al formato :format.",
+    "different": ":attribute y :other deben ser diferentes.",
+    "digits": ":attribute debe tener :digits d\xEDgitos.",
+    "digits_between": ":attribute debe tener entre :min y :max d\xEDgitos.",
+    "dimensions": "Las dimensiones de la imagen :attribute no son v\xE1lidas.",
+    "distinct": "El campo :attribute contiene un valor duplicado.",
+    "email": ":attribute no es un correo v\xE1lido",
+    "ends_with": "El campo :attribute debe finalizar con uno de los siguientes valores: :values",
+    "exists": ":attribute es inv\xE1lido.",
+    "file": "El campo :attribute debe ser un archivo.",
+    "filled": "El campo :attribute es obligatorio.",
+    "gt": {
+      "array": "El campo :attribute debe tener m\xE1s de :value elementos.",
+      "file": "El campo :attribute debe tener m\xE1s de :value kilobytes.",
+      "numeric": "El campo :attribute debe ser mayor que :value.",
+      "string": "El campo :attribute debe tener m\xE1s de :value caracteres."
+    },
+    "gte": {
+      "array": "El campo :attribute debe tener como m\xEDnimo :value elementos.",
+      "file": "El campo :attribute debe tener como m\xEDnimo :value kilobytes.",
+      "numeric": "El campo :attribute debe ser como m\xEDnimo :value.",
+      "string": "El campo :attribute debe tener como m\xEDnimo :value caracteres."
+    },
+    "image": ":attribute debe ser una imagen.",
+    "in": ":attribute es inv\xE1lido.",
+    "in_array": "El campo :attribute no existe en :other.",
+    "integer": ":attribute debe ser un n\xFAmero entero.",
+    "ip": ":attribute debe ser una direcci\xF3n IP v\xE1lida.",
+    "ipv4": ":attribute debe ser un direcci\xF3n IPv4 v\xE1lida",
+    "ipv6": ":attribute debe ser un direcci\xF3n IPv6 v\xE1lida.",
+    "json": "El campo :attribute debe tener una cadena JSON v\xE1lida.",
+    "lt": {
+      "array": "El campo :attribute debe tener menos de :value elementos.",
+      "file": "El campo :attribute debe tener menos de :value kilobytes.",
+      "numeric": "El campo :attribute debe ser menor que :value.",
+      "string": "El campo :attribute debe tener menos de :value caracteres."
+    },
+    "lte": {
+      "array": "El campo :attribute debe tener como m\xE1ximo :value elementos.",
+      "file": "El campo :attribute debe tener como m\xE1ximo :value kilobytes.",
+      "numeric": "El campo :attribute debe ser como m\xE1ximo :value.",
+      "string": "El campo :attribute debe tener como m\xE1ximo :value caracteres."
+    },
+    "max": {
+      "array": ":attribute no debe tener m\xE1s de :max elementos.",
+      "file": ":attribute no debe ser mayor que :max kilobytes.",
+      "numeric": ":attribute no debe ser mayor a :max.",
+      "string": ":attribute no debe ser mayor que :max caracteres."
+    },
+    "mimes": ":attribute debe ser un archivo con formato: :values.",
+    "mimetypes": ":attribute debe ser un archivo con formato: :values.",
+    "min": {
+      "array": ":attribute debe tener al menos :min elementos.",
+      "file": "El tama\xF1o de :attribute debe ser de al menos :min kilobytes.",
+      "numeric": "El tama\xF1o de :attribute debe ser de al menos :min.",
+      "string": ":attribute debe contener al menos :min caracteres."
+    },
+    "not_in": ":attribute es inv\xE1lido.",
+    "not_regex": "El formato del campo :attribute no es v\xE1lido.",
+    "numeric": ":attribute debe ser num\xE9rico.",
+    "password": "La contrase\xF1a es incorrecta.",
+    "present": "El campo :attribute debe estar presente.",
+    "regex": "El formato de :attribute es inv\xE1lido.",
+    "required": "El campo :attribute es obligatorio.",
+    "required_if": "El campo :attribute es obligatorio cuando :other es :value.",
+    "required_unless": "El campo :attribute es obligatorio a menos que :other est\xE9 en :values.",
+    "required_with": "El campo :attribute es obligatorio cuando :values est\xE1 presente.",
+    "required_with_all": "El campo :attribute es obligatorio cuando :values est\xE1 presente.",
+    "required_without": "El campo :attribute es obligatorio cuando :values no est\xE1 presente.",
+    "required_without_all": "El campo :attribute es obligatorio cuando ninguno de :values est\xE9n presentes.",
+    "same": ":attribute y :other deben coincidir.",
+    "size": {
+      "array": ":attribute debe contener :size elementos.",
+      "file": "El tama\xF1o de :attribute debe ser :size kilobytes.",
+      "numeric": "El tama\xF1o de :attribute debe ser :size.",
+      "string": ":attribute debe contener :size caracteres."
+    },
+    "starts_with": "El campo :attribute debe comenzar con uno de los siguientes valores: :values",
+    "string": "El campo :attribute debe ser una cadena de caracteres.",
+    "timezone": "El :attribute debe ser una zona v\xE1lida.",
+    "unique": "El campo :attribute ya ha sido registrado.",
+    "uploaded": "Subir :attribute ha fallado.",
+    "url": "El formato :attribute es inv\xE1lido.",
+    "uuid": "El campo :attribute debe ser un UUID v\xE1lido."
+  },
+  "fr.auth": {
+    "failed": "Ces identifiants ne correspondent pas \xE0 nos enregistrements",
+    "throttle": "Tentatives de connexion trop nombreuses. Veuillez essayer de nouveau dans :seconds secondes."
+  },
+  "fr.messages": {
+    "cookies": "En poursuivant votre navigation sur ce site, vous vous contentez de notre utilisation \n        des cookies pour am\xE9liorer votre exp\xE9rience en ligne",
+    "greeting": "Bonjour :name",
+    "learn_more": "en savoir plus",
+    "slogan": "D\xE9couvrez, partagez et vivez des exp\xE9riences uniques pr\xE8s de chez vous."
+  },
+  "fr.pagination": {
+    "next": "Suivant &raquo;",
+    "previous": "&laquo; Pr\xE9c\xE9dent"
+  },
+  "fr.passwords": {
+    "password": "Les mots de passe doivent contenir au moins huit caract\xE8res et \xEAtre identiques.",
+    "reset": "Votre mot de passe a \xE9t\xE9 r\xE9initialis\xE9 !",
+    "sent": "Nous vous avons envoy\xE9 par email le lien de r\xE9initialisation du mot de passe !",
+    "throttled": "Veuillez attendre afin de r\xE9-essayer.",
+    "token": "Ce jeton de r\xE9initialisation du mot de passe n'est pas valide.",
+    "user": "Aucun utilisateur n'a \xE9t\xE9 trouv\xE9 avec cette adresse email."
+  },
+  "fr.validation": {
+    "accepted": "Le champ :attribute doit \xEAtre accept\xE9.",
+    "active_url": "Le champ :attribute n'est pas une URL valide.",
+    "after": "Le champ :attribute doit \xEAtre une date post\xE9rieure au :date.",
+    "after_or_equal": "Le champ :attribute doit \xEAtre une date post\xE9rieure ou \xE9gale au :date.",
+    "alpha": "Le champ :attribute doit contenir uniquement des lettres.",
+    "alpha_dash": "Le champ :attribute doit contenir uniquement des lettres, des chiffres et des tirets.",
+    "alpha_num": "Le champ :attribute doit contenir uniquement des chiffres et des lettres.",
+    "array": "Le champ :attribute doit \xEAtre un tableau.",
+    "attributes": {
+      "address": "adresse",
+      "age": "\xE2ge",
+      "available": "disponible",
+      "city": "ville",
+      "content": "contenu",
+      "country": "pays",
+      "date": "date",
+      "day": "jour",
+      "description": "description",
+      "email": "adresse email",
+      "excerpt": "extrait",
+      "first_name": "pr\xE9nom",
+      "gender": "genre",
+      "hour": "heure",
+      "last_name": "nom",
+      "minute": "minute",
+      "mobile": "portable",
+      "month": "mois",
+      "name": "nom",
+      "password": "mot de passe",
+      "password_confirmation": "confirmation du mot de passe",
+      "phone": "t\xE9l\xE9phone",
+      "second": "seconde",
+      "sex": "sexe",
+      "size": "taille",
+      "time": "heure",
+      "title": "titre",
+      "username": "nom d'utilisateur",
+      "year": "ann\xE9e"
+    },
+    "before": "Le champ :attribute doit \xEAtre une date ant\xE9rieure au :date.",
+    "before_or_equal": "Le champ :attribute doit \xEAtre une date ant\xE9rieure ou \xE9gale au :date.",
+    "between": {
+      "array": "Le tableau :attribute doit contenir entre :min et :max \xE9l\xE9ments.",
+      "file": "La taille du fichier de :attribute doit \xEAtre comprise entre :min et :max kilo-octets.",
+      "numeric": "La valeur de :attribute doit \xEAtre comprise entre :min et :max.",
+      "string": "Le texte :attribute doit contenir entre :min et :max caract\xE8res."
+    },
+    "boolean": "Le champ :attribute doit \xEAtre vrai ou faux.",
+    "confirmed": "Le champ de confirmation :attribute ne correspond pas.",
+    "custom": {
+      "attribute-name": {
+        "rule-name": "custom-message"
+      }
+    },
+    "date": "Le champ :attribute n'est pas une date valide.",
+    "date_equals": "Le champ :attribute doit \xEAtre une date \xE9gale \xE0 :date.",
+    "date_format": "Le champ :attribute ne correspond pas au format :format.",
+    "different": "Les champs :attribute et :other doivent \xEAtre diff\xE9rents.",
+    "digits": "Le champ :attribute doit contenir :digits chiffres.",
+    "digits_between": "Le champ :attribute doit contenir entre :min et :max chiffres.",
+    "dimensions": "La taille de l'image :attribute n'est pas conforme.",
+    "distinct": "Le champ :attribute a une valeur en double.",
+    "email": "Le champ :attribute doit \xEAtre une adresse email valide.",
+    "ends_with": "Le champ :attribute doit se terminer par une des valeurs suivantes : :values",
+    "exists": "Le champ :attribute s\xE9lectionn\xE9 est invalide.",
+    "file": "Le champ :attribute doit \xEAtre un fichier.",
+    "filled": "Le champ :attribute doit avoir une valeur.",
+    "gt": {
+      "array": "Le tableau :attribute doit contenir plus de :value \xE9l\xE9ments.",
+      "file": "La taille du fichier de :attribute doit \xEAtre sup\xE9rieure \xE0 :value kilo-octets.",
+      "numeric": "La valeur de :attribute doit \xEAtre sup\xE9rieure \xE0 :value.",
+      "string": "Le texte :attribute doit contenir plus de :value caract\xE8res."
+    },
+    "gte": {
+      "array": "Le tableau :attribute doit contenir au moins :value \xE9l\xE9ments.",
+      "file": "La taille du fichier de :attribute doit \xEAtre sup\xE9rieure ou \xE9gale \xE0 :value kilo-octets.",
+      "numeric": "La valeur de :attribute doit \xEAtre sup\xE9rieure ou \xE9gale \xE0 :value.",
+      "string": "Le texte :attribute doit contenir au moins :value caract\xE8res."
+    },
+    "image": "Le champ :attribute doit \xEAtre une image.",
+    "in": "Le champ :attribute est invalide.",
+    "in_array": "Le champ :attribute n'existe pas dans :other.",
+    "integer": "Le champ :attribute doit \xEAtre un entier.",
+    "ip": "Le champ :attribute doit \xEAtre une adresse IP valide.",
+    "ipv4": "Le champ :attribute doit \xEAtre une adresse IPv4 valide.",
+    "ipv6": "Le champ :attribute doit \xEAtre une adresse IPv6 valide.",
+    "json": "Le champ :attribute doit \xEAtre un document JSON valide.",
+    "lt": {
+      "array": "Le tableau :attribute doit contenir moins de :value \xE9l\xE9ments.",
+      "file": "La taille du fichier de :attribute doit \xEAtre inf\xE9rieure \xE0 :value kilo-octets.",
+      "numeric": "La valeur de :attribute doit \xEAtre inf\xE9rieure \xE0 :value.",
+      "string": "Le texte :attribute doit contenir moins de :value caract\xE8res."
+    },
+    "lte": {
+      "array": "Le tableau :attribute doit contenir au plus :value \xE9l\xE9ments.",
+      "file": "La taille du fichier de :attribute doit \xEAtre inf\xE9rieure ou \xE9gale \xE0 :value kilo-octets.",
+      "numeric": "La valeur de :attribute doit \xEAtre inf\xE9rieure ou \xE9gale \xE0 :value.",
+      "string": "Le texte :attribute doit contenir au plus :value caract\xE8res."
+    },
+    "max": {
+      "array": "Le tableau :attribute ne peut contenir plus de :max \xE9l\xE9ments.",
+      "file": "La taille du fichier de :attribute ne peut pas d\xE9passer :max kilo-octets.",
+      "numeric": "La valeur de :attribute ne peut \xEAtre sup\xE9rieure \xE0 :max.",
+      "string": "Le texte de :attribute ne peut contenir plus de :max caract\xE8res."
+    },
+    "mimes": "Le champ :attribute doit \xEAtre un fichier de type : :values.",
+    "mimetypes": "Le champ :attribute doit \xEAtre un fichier de type : :values.",
+    "min": {
+      "array": "Le tableau :attribute doit contenir au moins :min \xE9l\xE9ments.",
+      "file": "La taille du fichier de :attribute doit \xEAtre sup\xE9rieure \xE0 :min kilo-octets.",
+      "numeric": "La valeur de :attribute doit \xEAtre sup\xE9rieure ou \xE9gale \xE0 :min.",
+      "string": "Le texte :attribute doit contenir au moins :min caract\xE8res."
+    },
+    "not_in": "Le champ :attribute s\xE9lectionn\xE9 n'est pas valide.",
+    "not_regex": "Le format du champ :attribute n'est pas valide.",
+    "numeric": "Le champ :attribute doit contenir un nombre.",
+    "password": "Le mot de passe est incorrect",
+    "present": "Le champ :attribute doit \xEAtre pr\xE9sent.",
+    "regex": "Le format du champ :attribute est invalide.",
+    "required": "Le champ :attribute est obligatoire.",
+    "required_if": "Le champ :attribute est obligatoire quand la valeur de :other est :value.",
+    "required_unless": "Le champ :attribute est obligatoire sauf si :other est :values.",
+    "required_with": "Le champ :attribute est obligatoire quand :values est pr\xE9sent.",
+    "required_with_all": "Le champ :attribute est obligatoire quand :values sont pr\xE9sents.",
+    "required_without": "Le champ :attribute est obligatoire quand :values n'est pas pr\xE9sent.",
+    "required_without_all": "Le champ :attribute est requis quand aucun de :values n'est pr\xE9sent.",
+    "same": "Les champs :attribute et :other doivent \xEAtre identiques.",
+    "size": {
+      "array": "Le tableau :attribute doit contenir :size \xE9l\xE9ments.",
+      "file": "La taille du fichier de :attribute doit \xEAtre de :size kilo-octets.",
+      "numeric": "La valeur de :attribute doit \xEAtre :size.",
+      "string": "Le texte de :attribute doit contenir :size caract\xE8res."
+    },
+    "starts_with": "Le champ :attribute doit commencer avec une des valeurs suivantes : :values",
+    "string": "Le champ :attribute doit \xEAtre une cha\xEEne de caract\xE8res.",
+    "timezone": "Le champ :attribute doit \xEAtre un fuseau horaire valide.",
+    "unique": "La valeur du champ :attribute est d\xE9j\xE0 utilis\xE9e.",
+    "uploaded": "Le fichier du champ :attribute n'a pu \xEAtre t\xE9l\xE9vers\xE9.",
+    "url": "Le format de l'URL de :attribute n'est pas valide.",
+    "uuid": "Le champ :attribute doit \xEAtre un UUID valide"
+  },
+  "it.auth": {
+    "failed": "Credenziali non corrispondenti ai dati registrati.",
+    "throttle": "Troppi tentativi di accesso. Riprova tra :seconds secondi."
+  },
+  "it.messages": {
+    "cookies": "Continuando a navigare in questo sito, accetti il \u200B\u200Bnostro uso dei cookie per migliorare \n    la tua esperienza online",
+    "greeting": "Buongiorno :name",
+    "learn_more": "Per saperne di pi\xF9",
+    "slogan": "Scopri, condividi e vivi esperienze uniche vicino a te."
+  },
+  "it.pagination": {
+    "next": "Successivo &raquo;",
+    "previous": "&laquo; Precedente"
+  },
+  "it.passwords": {
+    "password": "Le password devono essere di almeno 8 caratteri e devono coincidere.",
+    "reset": "La password \xE8 stata reimpostata!",
+    "sent": "Promemoria della password inviato!",
+    "throttled": "Please wait before retrying.",
+    "token": "Questo token per la reimpostazione della password non \xE8 valido.",
+    "user": "Non esiste un utente associato a questo indirizzo e-mail."
+  },
+  "it.validation": {
+    "accepted": ":attribute deve essere accettato.",
+    "active_url": ":attribute non \xE8 un URL valido.",
+    "after": ":attribute deve essere una data successiva al :date.",
+    "after_or_equal": ":attribute deve essere una data successiva o uguale al :date.",
+    "alpha": ":attribute pu\xF2 contenere solo lettere.",
+    "alpha_dash": ":attribute pu\xF2 contenere solo lettere, numeri e trattini.",
+    "alpha_num": ":attribute pu\xF2 contenere solo lettere e numeri.",
+    "array": ":attribute deve essere un array.",
+    "attributes": {
+      "address": "indirizzo",
+      "age": "et\xE0",
+      "available": "disponibile",
+      "city": "citt\xE0",
+      "content": "contenuto",
+      "country": "paese",
+      "date": "data",
+      "day": "giorno",
+      "description": "descrizione",
+      "excerpt": "estratto",
+      "first_name": "nome",
+      "gender": "genere",
+      "hour": "ora",
+      "last_name": "cognome",
+      "minute": "minuto",
+      "mobile": "cellulare",
+      "month": "mese",
+      "name": "nome",
+      "password_confirmation": "conferma password",
+      "phone": "telefono",
+      "second": "secondo",
+      "sex": "sesso",
+      "size": "dimensione",
+      "time": "ora",
+      "title": "titolo",
+      "username": "nome utente",
+      "year": "anno"
+    },
+    "before": ":attribute deve essere una data precedente al :date.",
+    "before_or_equal": ":attribute deve essere una data precedente o uguale al :date.",
+    "between": {
+      "array": ":attribute deve avere tra :min - :max elementi.",
+      "file": ":attribute deve trovarsi tra :min - :max kilobyte.",
+      "numeric": ":attribute deve trovarsi tra :min - :max.",
+      "string": ":attribute deve trovarsi tra :min - :max caratteri."
+    },
+    "boolean": "Il campo :attribute deve essere vero o falso.",
+    "confirmed": "Il campo di conferma per :attribute non coincide.",
+    "custom": {
+      "attribute-name": {
+        "rule-name": "custom-message"
+      }
+    },
+    "date": ":attribute non \xE8 una data valida.",
+    "date_equals": ":attribute deve essere una data e uguale a :date.",
+    "date_format": ":attribute non coincide con il formato :format.",
+    "different": ":attribute e :other devono essere differenti.",
+    "digits": ":attribute deve essere di :digits cifre.",
+    "digits_between": ":attribute deve essere tra :min e :max cifre.",
+    "dimensions": "Le dimensioni dell'immagine di :attribute non sono valide.",
+    "distinct": ":attribute contiene un valore duplicato.",
+    "email": ":attribute non \xE8 valido.",
+    "ends_with": ":attribute deve finire con uno dei seguenti valori: :values",
+    "exists": ":attribute selezionato non \xE8 valido.",
+    "file": ":attribute deve essere un file.",
+    "filled": "Il campo :attribute deve contenere un valore.",
+    "gt": {
+      "array": ":attribute deve contenere pi\xF9 di :value elementi.",
+      "file": ":attribute deve essere maggiore di :value kilobyte.",
+      "numeric": ":attribute deve essere maggiore di :value.",
+      "string": ":attribute deve contenere pi\xF9 di :value caratteri."
+    },
+    "gte": {
+      "array": ":attribute deve contenere un numero di elementi uguale o maggiore di :value.",
+      "file": ":attribute deve essere uguale o maggiore di :value kilobyte.",
+      "numeric": ":attribute deve essere uguale o maggiore di :value.",
+      "string": ":attribute deve contenere un numero di caratteri uguale o maggiore di :value."
+    },
+    "image": ":attribute deve essere un'immagine.",
+    "in": ":attribute selezionato non \xE8 valido.",
+    "in_array": "Il valore del campo :attribute non esiste in :other.",
+    "integer": ":attribute deve essere un numero intero.",
+    "ip": ":attribute deve essere un indirizzo IP valido.",
+    "ipv4": ":attribute deve essere un indirizzo IPv4 valido.",
+    "ipv6": ":attribute deve essere un indirizzo IPv6 valido.",
+    "json": ":attribute deve essere una stringa JSON valida.",
+    "lt": {
+      "array": ":attribute deve contenere meno di :value elementi.",
+      "file": ":attribute deve essere minore di :value kilobyte.",
+      "numeric": ":attribute deve essere minore di :value.",
+      "string": ":attribute deve contenere meno di :value caratteri."
+    },
+    "lte": {
+      "array": ":attribute deve contenere un numero di elementi minore o uguale a :value.",
+      "file": ":attribute deve essere minore o uguale a :value kilobyte.",
+      "numeric": ":attribute deve essere minore o uguale a :value.",
+      "string": ":attribute deve contenere un numero di caratteri minore o uguale a :value."
+    },
+    "max": {
+      "array": ":attribute non pu\xF2 avere pi\xF9 di :max elementi.",
+      "file": ":attribute non pu\xF2 essere superiore a :max kilobyte.",
+      "numeric": ":attribute non pu\xF2 essere superiore a :max.",
+      "string": ":attribute non pu\xF2 contenere pi\xF9 di :max caratteri."
+    },
+    "mimes": ":attribute deve essere del tipo: :values.",
+    "mimetypes": ":attribute deve essere del tipo: :values.",
+    "min": {
+      "array": ":attribute deve avere almeno :min elementi.",
+      "file": ":attribute deve essere almeno di :min kilobyte.",
+      "numeric": ":attribute deve essere almeno :min.",
+      "string": ":attribute deve contenere almeno :min caratteri."
+    },
+    "not_in": "Il valore selezionato per :attribute non \xE8 valido.",
+    "not_regex": "Il formato di :attribute non \xE8 valido.",
+    "numeric": ":attribute deve essere un numero.",
+    "present": "Il campo :attribute deve essere presente.",
+    "regex": "Il formato del campo :attribute non \xE8 valido.",
+    "required": "Il campo :attribute \xE8 richiesto.",
+    "required_if": "Il campo :attribute \xE8 richiesto quando :other \xE8 :value.",
+    "required_unless": "Il campo :attribute \xE8 richiesto a meno che :other sia in :values.",
+    "required_with": "Il campo :attribute \xE8 richiesto quando :values \xE8 presente.",
+    "required_with_all": "Il campo :attribute \xE8 richiesto quando :values sono presenti.",
+    "required_without": "Il campo :attribute \xE8 richiesto quando :values non \xE8 presente.",
+    "required_without_all": "Il campo :attribute \xE8 richiesto quando nessuno di :values \xE8 presente.",
+    "same": ":attribute e :other devono coincidere.",
+    "size": {
+      "array": ":attribute deve contenere :size elementi.",
+      "file": ":attribute deve essere :size kilobyte.",
+      "numeric": ":attribute deve essere :size.",
+      "string": ":attribute deve contenere :size caratteri."
+    },
+    "starts_with": ":attribute deve iniziare con uno dei seguenti: :values",
+    "string": ":attribute deve essere una stringa.",
+    "timezone": ":attribute deve essere una zona valida.",
+    "unique": ":attribute \xE8 stato gi\xE0 utilizzato.",
+    "uploaded": ":attribute non \xE8 stato caricato.",
+    "url": "Il formato del campo :attribute non \xE8 valido.",
+    "uuid": ":attribute deve essere un UUID valido."
   }
-
-  function convertNumber(str) {
-    if (str === "-Inf") {
-      return -Infinity;
-    } else if (str === "+Inf" || str === "Inf" || str === "*") {
-      return Infinity;
-    }
-
-    return parseInt(str, 10);
-  }
-
-  var intervalRegexp = /^({\s*(\-?\d+(\.\d+)?[\s*,\s*\-?\d+(\.\d+)?]*)\s*})|([\[\]])\s*(-Inf|\*|\-?\d+(\.\d+)?)\s*,\s*(\+?Inf|\*|\-?\d+(\.\d+)?)\s*([\[\]])$/;
-  var anyIntervalRegexp = /({\s*(\-?\d+(\.\d+)?[\s*,\s*\-?\d+(\.\d+)?]*)\s*})|([\[\]])\s*(-Inf|\*|\-?\d+(\.\d+)?)\s*,\s*(\+?Inf|\*|\-?\d+(\.\d+)?)\s*([\[\]])/;
-  var defaults = {
-    locale: "en"
-  };
-
-  var Lang = function Lang(options) {
-    options = options || {};
-    this.locale = options.locale || inferLocale() || defaults.locale;
-    this.fallback = options.fallback;
-    this.messages = options.messages;
-  };
-
-  Lang.prototype.setMessages = function (messages) {
-    this.messages = messages;
-  };
-
-  Lang.prototype.getLocale = function () {
-    return this.locale || this.fallback;
-  };
-
-  Lang.prototype.setLocale = function (locale) {
-    this.locale = locale;
-  };
-
-  Lang.prototype.getFallback = function () {
-    return this.fallback;
-  };
-
-  Lang.prototype.setFallback = function (fallback) {
-    this.fallback = fallback;
-  };
-
-  Lang.prototype.has = function (key, locale) {
-    if (typeof key !== "string" || !this.messages) {
-      return false;
-    }
-
-    return this._getMessage(key, locale) !== null;
-  };
-
-  Lang.prototype.get = function (key, replacements, locale) {
-    if (!this.has(key, locale)) {
-      return key;
-    }
-
-    var message = this._getMessage(key, locale);
-
-    if (message === null) {
-      return key;
-    }
-
-    if (replacements) {
-      message = this._applyReplacements(message, replacements);
-    }
-
-    return message;
-  };
-
-  Lang.prototype.trans = function (key, replacements) {
-    return this.get(key, replacements);
-  };
-
-  Lang.prototype.choice = function (key, number, replacements, locale) {
-    replacements = typeof replacements !== "undefined" ? replacements : {};
-    replacements.count = number;
-    var message = this.get(key, replacements, locale);
-
-    if (message === null || message === undefined) {
-      return message;
-    }
-
-    var messageParts = message.split("|");
-    var explicitRules = [];
-
-    for (var i = 0; i < messageParts.length; i++) {
-      messageParts[i] = messageParts[i].trim();
-
-      if (anyIntervalRegexp.test(messageParts[i])) {
-        var messageSpaceSplit = messageParts[i].split(/\s/);
-        explicitRules.push(messageSpaceSplit.shift());
-        messageParts[i] = messageSpaceSplit.join(" ");
-      }
-    }
-
-    if (messageParts.length === 1) {
-      return message;
-    }
-
-    for (var j = 0; j < explicitRules.length; j++) {
-      if (this._testInterval(number, explicitRules[j])) {
-        return messageParts[j];
-      }
-    }
-
-    var pluralForm = this._getPluralForm(number);
-
-    return messageParts[pluralForm];
-  };
-
-  Lang.prototype.transChoice = function (key, count, replacements) {
-    return this.choice(key, count, replacements);
-  };
-
-  Lang.prototype._parseKey = function (key, locale) {
-    if (typeof key !== "string" || typeof locale !== "string") {
-      return null;
-    }
-
-    var segments = key.split(".");
-    var source = segments[0].replace(/\//g, ".");
-    return {
-      source: locale + "." + source,
-      sourceFallback: this.getFallback() + "." + source,
-      entries: segments.slice(1)
-    };
-  };
-
-  Lang.prototype._getMessage = function (key, locale) {
-    locale = locale || this.getLocale();
-    key = this._parseKey(key, locale);
-
-    if (this.messages[key.source] === undefined && this.messages[key.sourceFallback] === undefined) {
-      return null;
-    }
-
-    var message = this.messages[key.source];
-    var entries = key.entries.slice();
-    var subKey = "";
-
-    while (entries.length && message !== undefined) {
-      var subKey = !subKey ? entries.shift() : subKey.concat(".", entries.shift());
-
-      if (message[subKey] !== undefined) {
-        message = message[subKey];
-        subKey = "";
-      }
-    }
-
-    if (typeof message !== "string" && this.messages[key.sourceFallback]) {
-      message = this.messages[key.sourceFallback];
-      entries = key.entries.slice();
-      subKey = "";
-
-      while (entries.length && message !== undefined) {
-        var subKey = !subKey ? entries.shift() : subKey.concat(".", entries.shift());
-
-        if (message[subKey]) {
-          message = message[subKey];
-          subKey = "";
-        }
-      }
-    }
-
-    if (typeof message !== "string") {
-      return null;
-    }
-
-    return message;
-  };
-
-  Lang.prototype._findMessageInTree = function (pathSegments, tree) {
-    while (pathSegments.length && tree !== undefined) {
-      var dottedKey = pathSegments.join(".");
-
-      if (tree[dottedKey]) {
-        tree = tree[dottedKey];
-        break;
-      }
-
-      tree = tree[pathSegments.shift()];
-    }
-
-    return tree;
-  };
-
-  Lang.prototype._applyReplacements = function (message, replacements) {
-    for (var replace in replacements) {
-      message = message.replace(new RegExp(":" + replace, "gi"), function (match) {
-        var value = replacements[replace];
-        var allCaps = match === match.toUpperCase();
-
-        if (allCaps) {
-          return value.toUpperCase();
-        }
-
-        var firstCap = match === match.replace(/\w/i, function (letter) {
-          return letter.toUpperCase();
-        });
-
-        if (firstCap) {
-          return value.charAt(0).toUpperCase() + value.slice(1);
-        }
-
-        return value;
-      });
-    }
-
-    return message;
-  };
-
-  Lang.prototype._testInterval = function (count, interval) {
-    if (typeof interval !== "string") {
-      throw "Invalid interval: should be a string.";
-    }
-
-    interval = interval.trim();
-    var matches = interval.match(intervalRegexp);
-
-    if (!matches) {
-      throw "Invalid interval: " + interval;
-    }
-
-    if (matches[2]) {
-      var items = matches[2].split(",");
-
-      for (var i = 0; i < items.length; i++) {
-        if (parseInt(items[i], 10) === count) {
-          return true;
-        }
-      }
-    } else {
-      matches = matches.filter(function (match) {
-        return !!match;
-      });
-      var leftDelimiter = matches[1];
-      var leftNumber = convertNumber(matches[2]);
-
-      if (leftNumber === Infinity) {
-        leftNumber = -Infinity;
-      }
-
-      var rightNumber = convertNumber(matches[3]);
-      var rightDelimiter = matches[4];
-      return (leftDelimiter === "[" ? count >= leftNumber : count > leftNumber) && (rightDelimiter === "]" ? count <= rightNumber : count < rightNumber);
-    }
-
-    return false;
-  };
-
-  Lang.prototype._getPluralForm = function (count) {
-    switch (this.locale) {
-      case "az":
-      case "bo":
-      case "dz":
-      case "id":
-      case "ja":
-      case "jv":
-      case "ka":
-      case "km":
-      case "kn":
-      case "ko":
-      case "ms":
-      case "th":
-      case "tr":
-      case "vi":
-      case "zh":
-        return 0;
-
-      case "af":
-      case "bn":
-      case "bg":
-      case "ca":
-      case "da":
-      case "de":
-      case "el":
-      case "en":
-      case "eo":
-      case "es":
-      case "et":
-      case "eu":
-      case "fa":
-      case "fi":
-      case "fo":
-      case "fur":
-      case "fy":
-      case "gl":
-      case "gu":
-      case "ha":
-      case "he":
-      case "hu":
-      case "is":
-      case "it":
-      case "ku":
-      case "lb":
-      case "ml":
-      case "mn":
-      case "mr":
-      case "nah":
-      case "nb":
-      case "ne":
-      case "nl":
-      case "nn":
-      case "no":
-      case "om":
-      case "or":
-      case "pa":
-      case "pap":
-      case "ps":
-      case "pt":
-      case "so":
-      case "sq":
-      case "sv":
-      case "sw":
-      case "ta":
-      case "te":
-      case "tk":
-      case "ur":
-      case "zu":
-        return count == 1 ? 0 : 1;
-
-      case "am":
-      case "bh":
-      case "fil":
-      case "fr":
-      case "gun":
-      case "hi":
-      case "hy":
-      case "ln":
-      case "mg":
-      case "nso":
-      case "xbr":
-      case "ti":
-      case "wa":
-        return count === 0 || count === 1 ? 0 : 1;
-
-      case "be":
-      case "bs":
-      case "hr":
-      case "ru":
-      case "sr":
-      case "uk":
-        return count % 10 == 1 && count % 100 != 11 ? 0 : count % 10 >= 2 && count % 10 <= 4 && (count % 100 < 10 || count % 100 >= 20) ? 1 : 2;
-
-      case "cs":
-      case "sk":
-        return count == 1 ? 0 : count >= 2 && count <= 4 ? 1 : 2;
-
-      case "ga":
-        return count == 1 ? 0 : count == 2 ? 1 : 2;
-
-      case "lt":
-        return count % 10 == 1 && count % 100 != 11 ? 0 : count % 10 >= 2 && (count % 100 < 10 || count % 100 >= 20) ? 1 : 2;
-
-      case "sl":
-        return count % 100 == 1 ? 0 : count % 100 == 2 ? 1 : count % 100 == 3 || count % 100 == 4 ? 2 : 3;
-
-      case "mk":
-        return count % 10 == 1 ? 0 : 1;
-
-      case "mt":
-        return count == 1 ? 0 : count === 0 || count % 100 > 1 && count % 100 < 11 ? 1 : count % 100 > 10 && count % 100 < 20 ? 2 : 3;
-
-      case "lv":
-        return count === 0 ? 0 : count % 10 == 1 && count % 100 != 11 ? 1 : 2;
-
-      case "pl":
-        return count == 1 ? 0 : count % 10 >= 2 && count % 10 <= 4 && (count % 100 < 12 || count % 100 > 14) ? 1 : 2;
-
-      case "cy":
-        return count == 1 ? 0 : count == 2 ? 1 : count == 8 || count == 11 ? 2 : 3;
-
-      case "ro":
-        return count == 1 ? 0 : count === 0 || count % 100 > 0 && count % 100 < 20 ? 1 : 2;
-
-      case "ar":
-        return count === 0 ? 0 : count == 1 ? 1 : count == 2 ? 2 : count % 100 >= 3 && count % 100 <= 10 ? 3 : count % 100 >= 11 && count % 100 <= 99 ? 4 : 5;
-
-      default:
-        return 0;
-    }
-  };
-
-  return Lang;
-});
-
-(function () {
-  Lang = new Lang();
-  Lang.setMessages({
-    "en.auth": {
-      "failed": "These credentials do not match our records.",
-      "throttle": "Too many login attempts. Please try again in :seconds seconds."
-    },
-    "en.messages": {
-      "cookies": "By continuing to browse this site, you content to our use of cookies \n    to improve your online experience.",
-      "learn_more": "learn more",
-      "slogan": "Discover, share and live unique experieences near you."
-    },
-    "en.pagination": {
-      "next": "Next &raquo;",
-      "previous": "&laquo; Previous"
-    },
-    "en.passwords": {
-      "reset": "Your password has been reset!",
-      "sent": "We have e-mailed your password reset link!",
-      "throttled": "Please wait before retrying.",
-      "token": "This password reset token is invalid.",
-      "user": "We can't find a user with that e-mail address."
-    },
-    "en.validation": {
-      "accepted": "The :attribute must be accepted.",
-      "active_url": "The :attribute is not a valid URL.",
-      "after": "The :attribute must be a date after :date.",
-      "after_or_equal": "The :attribute must be a date after or equal to :date.",
-      "alpha": "The :attribute may only contain letters.",
-      "alpha_dash": "The :attribute may only contain letters, numbers, dashes and underscores.",
-      "alpha_num": "The :attribute may only contain letters and numbers.",
-      "array": "The :attribute must be an array.",
-      "attributes": [],
-      "before": "The :attribute must be a date before :date.",
-      "before_or_equal": "The :attribute must be a date before or equal to :date.",
-      "between": {
-        "array": "The :attribute must have between :min and :max items.",
-        "file": "The :attribute must be between :min and :max kilobytes.",
-        "numeric": "The :attribute must be between :min and :max.",
-        "string": "The :attribute must be between :min and :max characters."
-      },
-      "boolean": "The :attribute field must be true or false.",
-      "confirmed": "The :attribute confirmation does not match.",
-      "custom": {
-        "attribute-name": {
-          "rule-name": "custom-message"
-        }
-      },
-      "date": "The :attribute is not a valid date.",
-      "date_equals": "The :attribute must be a date equal to :date.",
-      "date_format": "The :attribute does not match the format :format.",
-      "different": "The :attribute and :other must be different.",
-      "digits": "The :attribute must be :digits digits.",
-      "digits_between": "The :attribute must be between :min and :max digits.",
-      "dimensions": "The :attribute has invalid image dimensions.",
-      "distinct": "The :attribute field has a duplicate value.",
-      "email": "The :attribute must be a valid email address.",
-      "ends_with": "The :attribute must end with one of the following: :values.",
-      "exists": "The selected :attribute is invalid.",
-      "file": "The :attribute must be a file.",
-      "filled": "The :attribute field must have a value.",
-      "gt": {
-        "array": "The :attribute must have more than :value items.",
-        "file": "The :attribute must be greater than :value kilobytes.",
-        "numeric": "The :attribute must be greater than :value.",
-        "string": "The :attribute must be greater than :value characters."
-      },
-      "gte": {
-        "array": "The :attribute must have :value items or more.",
-        "file": "The :attribute must be greater than or equal :value kilobytes.",
-        "numeric": "The :attribute must be greater than or equal :value.",
-        "string": "The :attribute must be greater than or equal :value characters."
-      },
-      "image": "The :attribute must be an image.",
-      "in": "The selected :attribute is invalid.",
-      "in_array": "The :attribute field does not exist in :other.",
-      "integer": "The :attribute must be an integer.",
-      "ip": "The :attribute must be a valid IP address.",
-      "ipv4": "The :attribute must be a valid IPv4 address.",
-      "ipv6": "The :attribute must be a valid IPv6 address.",
-      "json": "The :attribute must be a valid JSON string.",
-      "lt": {
-        "array": "The :attribute must have less than :value items.",
-        "file": "The :attribute must be less than :value kilobytes.",
-        "numeric": "The :attribute must be less than :value.",
-        "string": "The :attribute must be less than :value characters."
-      },
-      "lte": {
-        "array": "The :attribute must not have more than :value items.",
-        "file": "The :attribute must be less than or equal :value kilobytes.",
-        "numeric": "The :attribute must be less than or equal :value.",
-        "string": "The :attribute must be less than or equal :value characters."
-      },
-      "max": {
-        "array": "The :attribute may not have more than :max items.",
-        "file": "The :attribute may not be greater than :max kilobytes.",
-        "numeric": "The :attribute may not be greater than :max.",
-        "string": "The :attribute may not be greater than :max characters."
-      },
-      "mimes": "The :attribute must be a file of type: :values.",
-      "mimetypes": "The :attribute must be a file of type: :values.",
-      "min": {
-        "array": "The :attribute must have at least :min items.",
-        "file": "The :attribute must be at least :min kilobytes.",
-        "numeric": "The :attribute must be at least :min.",
-        "string": "The :attribute must be at least :min characters."
-      },
-      "not_in": "The selected :attribute is invalid.",
-      "not_regex": "The :attribute format is invalid.",
-      "numeric": "The :attribute must be a number.",
-      "password": "The password is incorrect.",
-      "present": "The :attribute field must be present.",
-      "regex": "The :attribute format is invalid.",
-      "required": "The :attribute field is required.",
-      "required_if": "The :attribute field is required when :other is :value.",
-      "required_unless": "The :attribute field is required unless :other is in :values.",
-      "required_with": "The :attribute field is required when :values is present.",
-      "required_with_all": "The :attribute field is required when :values are present.",
-      "required_without": "The :attribute field is required when :values is not present.",
-      "required_without_all": "The :attribute field is required when none of :values are present.",
-      "same": "The :attribute and :other must match.",
-      "size": {
-        "array": "The :attribute must contain :size items.",
-        "file": "The :attribute must be :size kilobytes.",
-        "numeric": "The :attribute must be :size.",
-        "string": "The :attribute must be :size characters."
-      },
-      "starts_with": "The :attribute must start with one of the following: :values.",
-      "string": "The :attribute must be a string.",
-      "timezone": "The :attribute must be a valid zone.",
-      "unique": "The :attribute has already been taken.",
-      "uploaded": "The :attribute failed to upload.",
-      "url": "The :attribute format is invalid.",
-      "uuid": "The :attribute must be a valid UUID."
-    },
-    "es.auth": {
-      "failed": "Estas credenciales no coinciden con nuestros registros.",
-      "throttle": "Demasiados intentos de acceso. Por favor intente nuevamente en :seconds segundos."
-    },
-    "es.messages": {
-      "cookies": "Al continuar navegando por este sitio, usted se contenta con nuestro uso de cookies \n    para mejorar su experiencia en l\xEDnea",
-      "learn_more": "aprende m\xE1s",
-      "slogan": "Descubre, comparte y vive experiencias \xFAnicas cerca de ti."
-    },
-    "es.pagination": {
-      "next": "Siguiente &raquo;",
-      "previous": "&laquo; Anterior"
-    },
-    "es.passwords": {
-      "password": "Las contrase\xF1as deben coincidir y contener al menos 8 caracteres",
-      "reset": "\xA1Tu contrase\xF1a ha sido restablecida!",
-      "sent": "\xA1Te hemos enviado por correo el enlace para restablecer tu contrase\xF1a!",
-      "throttled": "Por favor espera antes de intentar de nuevo.",
-      "token": "El token de recuperaci\xF3n de contrase\xF1a es inv\xE1lido.",
-      "user": "No podemos encontrar ning\xFAn usuario con ese correo electr\xF3nico."
-    },
-    "es.validation": {
-      "accepted": ":attribute debe ser aceptado.",
-      "active_url": ":attribute no es una URL v\xE1lida.",
-      "after": ":attribute debe ser una fecha posterior a :date.",
-      "after_or_equal": ":attribute debe ser una fecha posterior o igual a :date.",
-      "alpha": ":attribute s\xF3lo debe contener letras.",
-      "alpha_dash": ":attribute s\xF3lo debe contener letras, n\xFAmeros y guiones.",
-      "alpha_num": ":attribute s\xF3lo debe contener letras y n\xFAmeros.",
-      "array": ":attribute debe ser un conjunto.",
-      "attributes": {
-        "address": "direcci\xF3n",
-        "age": "edad",
-        "body": "contenido",
-        "city": "ciudad",
-        "content": "contenido",
-        "country": "pa\xEDs",
-        "date": "fecha",
-        "day": "d\xEDa",
-        "description": "descripci\xF3n",
-        "email": "correo electr\xF3nico",
-        "excerpt": "extracto",
-        "first_name": "nombre",
-        "gender": "g\xE9nero",
-        "hour": "hora",
-        "last_name": "apellido",
-        "message": "mensaje",
-        "minute": "minuto",
-        "mobile": "m\xF3vil",
-        "month": "mes",
-        "name": "nombre",
-        "password": "contrase\xF1a",
-        "password_confirmation": "confirmaci\xF3n de la contrase\xF1a",
-        "phone": "tel\xE9fono",
-        "price": "precio",
-        "second": "segundo",
-        "sex": "sexo",
-        "subject": "asunto",
-        "terms": "t\xE9rminos",
-        "time": "hora",
-        "title": "t\xEDtulo",
-        "username": "usuario",
-        "year": "a\xF1o"
-      },
-      "before": ":attribute debe ser una fecha anterior a :date.",
-      "before_or_equal": ":attribute debe ser una fecha anterior o igual a :date.",
-      "between": {
-        "array": ":attribute tiene que tener entre :min - :max \xEDtems.",
-        "file": ":attribute debe pesar entre :min - :max kilobytes.",
-        "numeric": ":attribute tiene que estar entre :min - :max.",
-        "string": ":attribute tiene que tener entre :min - :max caracteres."
-      },
-      "boolean": "El campo :attribute debe tener un valor verdadero o falso.",
-      "confirmed": "La confirmaci\xF3n de :attribute no coincide.",
-      "custom": {
-        "email": {
-          "unique": "El :attribute ya ha sido registrado."
-        },
-        "password": {
-          "min": "La :attribute debe contener m\xE1s de :min caracteres"
-        }
-      },
-      "date": ":attribute no es una fecha v\xE1lida.",
-      "date_equals": ":attribute debe ser una fecha igual a :date.",
-      "date_format": ":attribute no corresponde al formato :format.",
-      "different": ":attribute y :other deben ser diferentes.",
-      "digits": ":attribute debe tener :digits d\xEDgitos.",
-      "digits_between": ":attribute debe tener entre :min y :max d\xEDgitos.",
-      "dimensions": "Las dimensiones de la imagen :attribute no son v\xE1lidas.",
-      "distinct": "El campo :attribute contiene un valor duplicado.",
-      "email": ":attribute no es un correo v\xE1lido",
-      "ends_with": "El campo :attribute debe finalizar con uno de los siguientes valores: :values",
-      "exists": ":attribute es inv\xE1lido.",
-      "file": "El campo :attribute debe ser un archivo.",
-      "filled": "El campo :attribute es obligatorio.",
-      "gt": {
-        "array": "El campo :attribute debe tener m\xE1s de :value elementos.",
-        "file": "El campo :attribute debe tener m\xE1s de :value kilobytes.",
-        "numeric": "El campo :attribute debe ser mayor que :value.",
-        "string": "El campo :attribute debe tener m\xE1s de :value caracteres."
-      },
-      "gte": {
-        "array": "El campo :attribute debe tener como m\xEDnimo :value elementos.",
-        "file": "El campo :attribute debe tener como m\xEDnimo :value kilobytes.",
-        "numeric": "El campo :attribute debe ser como m\xEDnimo :value.",
-        "string": "El campo :attribute debe tener como m\xEDnimo :value caracteres."
-      },
-      "image": ":attribute debe ser una imagen.",
-      "in": ":attribute es inv\xE1lido.",
-      "in_array": "El campo :attribute no existe en :other.",
-      "integer": ":attribute debe ser un n\xFAmero entero.",
-      "ip": ":attribute debe ser una direcci\xF3n IP v\xE1lida.",
-      "ipv4": ":attribute debe ser un direcci\xF3n IPv4 v\xE1lida",
-      "ipv6": ":attribute debe ser un direcci\xF3n IPv6 v\xE1lida.",
-      "json": "El campo :attribute debe tener una cadena JSON v\xE1lida.",
-      "lt": {
-        "array": "El campo :attribute debe tener menos de :value elementos.",
-        "file": "El campo :attribute debe tener menos de :value kilobytes.",
-        "numeric": "El campo :attribute debe ser menor que :value.",
-        "string": "El campo :attribute debe tener menos de :value caracteres."
-      },
-      "lte": {
-        "array": "El campo :attribute debe tener como m\xE1ximo :value elementos.",
-        "file": "El campo :attribute debe tener como m\xE1ximo :value kilobytes.",
-        "numeric": "El campo :attribute debe ser como m\xE1ximo :value.",
-        "string": "El campo :attribute debe tener como m\xE1ximo :value caracteres."
-      },
-      "max": {
-        "array": ":attribute no debe tener m\xE1s de :max elementos.",
-        "file": ":attribute no debe ser mayor que :max kilobytes.",
-        "numeric": ":attribute no debe ser mayor a :max.",
-        "string": ":attribute no debe ser mayor que :max caracteres."
-      },
-      "mimes": ":attribute debe ser un archivo con formato: :values.",
-      "mimetypes": ":attribute debe ser un archivo con formato: :values.",
-      "min": {
-        "array": ":attribute debe tener al menos :min elementos.",
-        "file": "El tama\xF1o de :attribute debe ser de al menos :min kilobytes.",
-        "numeric": "El tama\xF1o de :attribute debe ser de al menos :min.",
-        "string": ":attribute debe contener al menos :min caracteres."
-      },
-      "not_in": ":attribute es inv\xE1lido.",
-      "not_regex": "El formato del campo :attribute no es v\xE1lido.",
-      "numeric": ":attribute debe ser num\xE9rico.",
-      "password": "La contrase\xF1a es incorrecta.",
-      "present": "El campo :attribute debe estar presente.",
-      "regex": "El formato de :attribute es inv\xE1lido.",
-      "required": "El campo :attribute es obligatorio.",
-      "required_if": "El campo :attribute es obligatorio cuando :other es :value.",
-      "required_unless": "El campo :attribute es obligatorio a menos que :other est\xE9 en :values.",
-      "required_with": "El campo :attribute es obligatorio cuando :values est\xE1 presente.",
-      "required_with_all": "El campo :attribute es obligatorio cuando :values est\xE1 presente.",
-      "required_without": "El campo :attribute es obligatorio cuando :values no est\xE1 presente.",
-      "required_without_all": "El campo :attribute es obligatorio cuando ninguno de :values est\xE9n presentes.",
-      "same": ":attribute y :other deben coincidir.",
-      "size": {
-        "array": ":attribute debe contener :size elementos.",
-        "file": "El tama\xF1o de :attribute debe ser :size kilobytes.",
-        "numeric": "El tama\xF1o de :attribute debe ser :size.",
-        "string": ":attribute debe contener :size caracteres."
-      },
-      "starts_with": "El campo :attribute debe comenzar con uno de los siguientes valores: :values",
-      "string": "El campo :attribute debe ser una cadena de caracteres.",
-      "timezone": "El :attribute debe ser una zona v\xE1lida.",
-      "unique": "El campo :attribute ya ha sido registrado.",
-      "uploaded": "Subir :attribute ha fallado.",
-      "url": "El formato :attribute es inv\xE1lido.",
-      "uuid": "El campo :attribute debe ser un UUID v\xE1lido."
-    },
-    "fr.auth": {
-      "failed": "Ces identifiants ne correspondent pas \xE0 nos enregistrements",
-      "throttle": "Tentatives de connexion trop nombreuses. Veuillez essayer de nouveau dans :seconds secondes."
-    },
-    "fr.messages": {
-      "cookies": "En poursuivant votre navigation sur ce site, vous vous contentez de notre utilisation \n        des cookies pour am\xE9liorer votre exp\xE9rience en ligne",
-      "learn": "en savoir plus",
-      "slogan": "D\xE9couvrez, partagez et vivez des exp\xE9riences uniques pr\xE8s de chez vous."
-    },
-    "fr.pagination": {
-      "next": "Suivant &raquo;",
-      "previous": "&laquo; Pr\xE9c\xE9dent"
-    },
-    "fr.passwords": {
-      "password": "Les mots de passe doivent contenir au moins huit caract\xE8res et \xEAtre identiques.",
-      "reset": "Votre mot de passe a \xE9t\xE9 r\xE9initialis\xE9 !",
-      "sent": "Nous vous avons envoy\xE9 par email le lien de r\xE9initialisation du mot de passe !",
-      "throttled": "Veuillez attendre afin de r\xE9-essayer.",
-      "token": "Ce jeton de r\xE9initialisation du mot de passe n'est pas valide.",
-      "user": "Aucun utilisateur n'a \xE9t\xE9 trouv\xE9 avec cette adresse email."
-    },
-    "fr.validation": {
-      "accepted": "Le champ :attribute doit \xEAtre accept\xE9.",
-      "active_url": "Le champ :attribute n'est pas une URL valide.",
-      "after": "Le champ :attribute doit \xEAtre une date post\xE9rieure au :date.",
-      "after_or_equal": "Le champ :attribute doit \xEAtre une date post\xE9rieure ou \xE9gale au :date.",
-      "alpha": "Le champ :attribute doit contenir uniquement des lettres.",
-      "alpha_dash": "Le champ :attribute doit contenir uniquement des lettres, des chiffres et des tirets.",
-      "alpha_num": "Le champ :attribute doit contenir uniquement des chiffres et des lettres.",
-      "array": "Le champ :attribute doit \xEAtre un tableau.",
-      "attributes": {
-        "address": "adresse",
-        "age": "\xE2ge",
-        "available": "disponible",
-        "city": "ville",
-        "content": "contenu",
-        "country": "pays",
-        "date": "date",
-        "day": "jour",
-        "description": "description",
-        "email": "adresse email",
-        "excerpt": "extrait",
-        "first_name": "pr\xE9nom",
-        "gender": "genre",
-        "hour": "heure",
-        "last_name": "nom",
-        "minute": "minute",
-        "mobile": "portable",
-        "month": "mois",
-        "name": "nom",
-        "password": "mot de passe",
-        "password_confirmation": "confirmation du mot de passe",
-        "phone": "t\xE9l\xE9phone",
-        "second": "seconde",
-        "sex": "sexe",
-        "size": "taille",
-        "time": "heure",
-        "title": "titre",
-        "username": "nom d'utilisateur",
-        "year": "ann\xE9e"
-      },
-      "before": "Le champ :attribute doit \xEAtre une date ant\xE9rieure au :date.",
-      "before_or_equal": "Le champ :attribute doit \xEAtre une date ant\xE9rieure ou \xE9gale au :date.",
-      "between": {
-        "array": "Le tableau :attribute doit contenir entre :min et :max \xE9l\xE9ments.",
-        "file": "La taille du fichier de :attribute doit \xEAtre comprise entre :min et :max kilo-octets.",
-        "numeric": "La valeur de :attribute doit \xEAtre comprise entre :min et :max.",
-        "string": "Le texte :attribute doit contenir entre :min et :max caract\xE8res."
-      },
-      "boolean": "Le champ :attribute doit \xEAtre vrai ou faux.",
-      "confirmed": "Le champ de confirmation :attribute ne correspond pas.",
-      "custom": {
-        "attribute-name": {
-          "rule-name": "custom-message"
-        }
-      },
-      "date": "Le champ :attribute n'est pas une date valide.",
-      "date_equals": "Le champ :attribute doit \xEAtre une date \xE9gale \xE0 :date.",
-      "date_format": "Le champ :attribute ne correspond pas au format :format.",
-      "different": "Les champs :attribute et :other doivent \xEAtre diff\xE9rents.",
-      "digits": "Le champ :attribute doit contenir :digits chiffres.",
-      "digits_between": "Le champ :attribute doit contenir entre :min et :max chiffres.",
-      "dimensions": "La taille de l'image :attribute n'est pas conforme.",
-      "distinct": "Le champ :attribute a une valeur en double.",
-      "email": "Le champ :attribute doit \xEAtre une adresse email valide.",
-      "ends_with": "Le champ :attribute doit se terminer par une des valeurs suivantes : :values",
-      "exists": "Le champ :attribute s\xE9lectionn\xE9 est invalide.",
-      "file": "Le champ :attribute doit \xEAtre un fichier.",
-      "filled": "Le champ :attribute doit avoir une valeur.",
-      "gt": {
-        "array": "Le tableau :attribute doit contenir plus de :value \xE9l\xE9ments.",
-        "file": "La taille du fichier de :attribute doit \xEAtre sup\xE9rieure \xE0 :value kilo-octets.",
-        "numeric": "La valeur de :attribute doit \xEAtre sup\xE9rieure \xE0 :value.",
-        "string": "Le texte :attribute doit contenir plus de :value caract\xE8res."
-      },
-      "gte": {
-        "array": "Le tableau :attribute doit contenir au moins :value \xE9l\xE9ments.",
-        "file": "La taille du fichier de :attribute doit \xEAtre sup\xE9rieure ou \xE9gale \xE0 :value kilo-octets.",
-        "numeric": "La valeur de :attribute doit \xEAtre sup\xE9rieure ou \xE9gale \xE0 :value.",
-        "string": "Le texte :attribute doit contenir au moins :value caract\xE8res."
-      },
-      "image": "Le champ :attribute doit \xEAtre une image.",
-      "in": "Le champ :attribute est invalide.",
-      "in_array": "Le champ :attribute n'existe pas dans :other.",
-      "integer": "Le champ :attribute doit \xEAtre un entier.",
-      "ip": "Le champ :attribute doit \xEAtre une adresse IP valide.",
-      "ipv4": "Le champ :attribute doit \xEAtre une adresse IPv4 valide.",
-      "ipv6": "Le champ :attribute doit \xEAtre une adresse IPv6 valide.",
-      "json": "Le champ :attribute doit \xEAtre un document JSON valide.",
-      "lt": {
-        "array": "Le tableau :attribute doit contenir moins de :value \xE9l\xE9ments.",
-        "file": "La taille du fichier de :attribute doit \xEAtre inf\xE9rieure \xE0 :value kilo-octets.",
-        "numeric": "La valeur de :attribute doit \xEAtre inf\xE9rieure \xE0 :value.",
-        "string": "Le texte :attribute doit contenir moins de :value caract\xE8res."
-      },
-      "lte": {
-        "array": "Le tableau :attribute doit contenir au plus :value \xE9l\xE9ments.",
-        "file": "La taille du fichier de :attribute doit \xEAtre inf\xE9rieure ou \xE9gale \xE0 :value kilo-octets.",
-        "numeric": "La valeur de :attribute doit \xEAtre inf\xE9rieure ou \xE9gale \xE0 :value.",
-        "string": "Le texte :attribute doit contenir au plus :value caract\xE8res."
-      },
-      "max": {
-        "array": "Le tableau :attribute ne peut contenir plus de :max \xE9l\xE9ments.",
-        "file": "La taille du fichier de :attribute ne peut pas d\xE9passer :max kilo-octets.",
-        "numeric": "La valeur de :attribute ne peut \xEAtre sup\xE9rieure \xE0 :max.",
-        "string": "Le texte de :attribute ne peut contenir plus de :max caract\xE8res."
-      },
-      "mimes": "Le champ :attribute doit \xEAtre un fichier de type : :values.",
-      "mimetypes": "Le champ :attribute doit \xEAtre un fichier de type : :values.",
-      "min": {
-        "array": "Le tableau :attribute doit contenir au moins :min \xE9l\xE9ments.",
-        "file": "La taille du fichier de :attribute doit \xEAtre sup\xE9rieure \xE0 :min kilo-octets.",
-        "numeric": "La valeur de :attribute doit \xEAtre sup\xE9rieure ou \xE9gale \xE0 :min.",
-        "string": "Le texte :attribute doit contenir au moins :min caract\xE8res."
-      },
-      "not_in": "Le champ :attribute s\xE9lectionn\xE9 n'est pas valide.",
-      "not_regex": "Le format du champ :attribute n'est pas valide.",
-      "numeric": "Le champ :attribute doit contenir un nombre.",
-      "password": "Le mot de passe est incorrect",
-      "present": "Le champ :attribute doit \xEAtre pr\xE9sent.",
-      "regex": "Le format du champ :attribute est invalide.",
-      "required": "Le champ :attribute est obligatoire.",
-      "required_if": "Le champ :attribute est obligatoire quand la valeur de :other est :value.",
-      "required_unless": "Le champ :attribute est obligatoire sauf si :other est :values.",
-      "required_with": "Le champ :attribute est obligatoire quand :values est pr\xE9sent.",
-      "required_with_all": "Le champ :attribute est obligatoire quand :values sont pr\xE9sents.",
-      "required_without": "Le champ :attribute est obligatoire quand :values n'est pas pr\xE9sent.",
-      "required_without_all": "Le champ :attribute est requis quand aucun de :values n'est pr\xE9sent.",
-      "same": "Les champs :attribute et :other doivent \xEAtre identiques.",
-      "size": {
-        "array": "Le tableau :attribute doit contenir :size \xE9l\xE9ments.",
-        "file": "La taille du fichier de :attribute doit \xEAtre de :size kilo-octets.",
-        "numeric": "La valeur de :attribute doit \xEAtre :size.",
-        "string": "Le texte de :attribute doit contenir :size caract\xE8res."
-      },
-      "starts_with": "Le champ :attribute doit commencer avec une des valeurs suivantes : :values",
-      "string": "Le champ :attribute doit \xEAtre une cha\xEEne de caract\xE8res.",
-      "timezone": "Le champ :attribute doit \xEAtre un fuseau horaire valide.",
-      "unique": "La valeur du champ :attribute est d\xE9j\xE0 utilis\xE9e.",
-      "uploaded": "Le fichier du champ :attribute n'a pu \xEAtre t\xE9l\xE9vers\xE9.",
-      "url": "Le format de l'URL de :attribute n'est pas valide.",
-      "uuid": "Le champ :attribute doit \xEAtre un UUID valide"
-    },
-    "it.auth": {
-      "failed": "Credenziali non corrispondenti ai dati registrati.",
-      "throttle": "Troppi tentativi di accesso. Riprova tra :seconds secondi."
-    },
-    "it.messages": {
-      "cookies": "Continuando a navigare in questo sito, accetti il \u200B\u200Bnostro uso dei cookie per migliorare \n    la tua esperienza online",
-      "learn_more": "Per saperne di pi\xF9",
-      "slogan": "Scopri, condividi e vivi esperienze uniche vicino a te."
-    },
-    "it.pagination": {
-      "next": "Successivo &raquo;",
-      "previous": "&laquo; Precedente"
-    },
-    "it.passwords": {
-      "password": "Le password devono essere di almeno 8 caratteri e devono coincidere.",
-      "reset": "La password \xE8 stata reimpostata!",
-      "sent": "Promemoria della password inviato!",
-      "throttled": "Please wait before retrying.",
-      "token": "Questo token per la reimpostazione della password non \xE8 valido.",
-      "user": "Non esiste un utente associato a questo indirizzo e-mail."
-    },
-    "it.validation": {
-      "accepted": ":attribute deve essere accettato.",
-      "active_url": ":attribute non \xE8 un URL valido.",
-      "after": ":attribute deve essere una data successiva al :date.",
-      "after_or_equal": ":attribute deve essere una data successiva o uguale al :date.",
-      "alpha": ":attribute pu\xF2 contenere solo lettere.",
-      "alpha_dash": ":attribute pu\xF2 contenere solo lettere, numeri e trattini.",
-      "alpha_num": ":attribute pu\xF2 contenere solo lettere e numeri.",
-      "array": ":attribute deve essere un array.",
-      "attributes": {
-        "address": "indirizzo",
-        "age": "et\xE0",
-        "available": "disponibile",
-        "city": "citt\xE0",
-        "content": "contenuto",
-        "country": "paese",
-        "date": "data",
-        "day": "giorno",
-        "description": "descrizione",
-        "excerpt": "estratto",
-        "first_name": "nome",
-        "gender": "genere",
-        "hour": "ora",
-        "last_name": "cognome",
-        "minute": "minuto",
-        "mobile": "cellulare",
-        "month": "mese",
-        "name": "nome",
-        "password_confirmation": "conferma password",
-        "phone": "telefono",
-        "second": "secondo",
-        "sex": "sesso",
-        "size": "dimensione",
-        "time": "ora",
-        "title": "titolo",
-        "username": "nome utente",
-        "year": "anno"
-      },
-      "before": ":attribute deve essere una data precedente al :date.",
-      "before_or_equal": ":attribute deve essere una data precedente o uguale al :date.",
-      "between": {
-        "array": ":attribute deve avere tra :min - :max elementi.",
-        "file": ":attribute deve trovarsi tra :min - :max kilobyte.",
-        "numeric": ":attribute deve trovarsi tra :min - :max.",
-        "string": ":attribute deve trovarsi tra :min - :max caratteri."
-      },
-      "boolean": "Il campo :attribute deve essere vero o falso.",
-      "confirmed": "Il campo di conferma per :attribute non coincide.",
-      "custom": {
-        "attribute-name": {
-          "rule-name": "custom-message"
-        }
-      },
-      "date": ":attribute non \xE8 una data valida.",
-      "date_equals": ":attribute deve essere una data e uguale a :date.",
-      "date_format": ":attribute non coincide con il formato :format.",
-      "different": ":attribute e :other devono essere differenti.",
-      "digits": ":attribute deve essere di :digits cifre.",
-      "digits_between": ":attribute deve essere tra :min e :max cifre.",
-      "dimensions": "Le dimensioni dell'immagine di :attribute non sono valide.",
-      "distinct": ":attribute contiene un valore duplicato.",
-      "email": ":attribute non \xE8 valido.",
-      "ends_with": ":attribute deve finire con uno dei seguenti valori: :values",
-      "exists": ":attribute selezionato non \xE8 valido.",
-      "file": ":attribute deve essere un file.",
-      "filled": "Il campo :attribute deve contenere un valore.",
-      "gt": {
-        "array": ":attribute deve contenere pi\xF9 di :value elementi.",
-        "file": ":attribute deve essere maggiore di :value kilobyte.",
-        "numeric": ":attribute deve essere maggiore di :value.",
-        "string": ":attribute deve contenere pi\xF9 di :value caratteri."
-      },
-      "gte": {
-        "array": ":attribute deve contenere un numero di elementi uguale o maggiore di :value.",
-        "file": ":attribute deve essere uguale o maggiore di :value kilobyte.",
-        "numeric": ":attribute deve essere uguale o maggiore di :value.",
-        "string": ":attribute deve contenere un numero di caratteri uguale o maggiore di :value."
-      },
-      "image": ":attribute deve essere un'immagine.",
-      "in": ":attribute selezionato non \xE8 valido.",
-      "in_array": "Il valore del campo :attribute non esiste in :other.",
-      "integer": ":attribute deve essere un numero intero.",
-      "ip": ":attribute deve essere un indirizzo IP valido.",
-      "ipv4": ":attribute deve essere un indirizzo IPv4 valido.",
-      "ipv6": ":attribute deve essere un indirizzo IPv6 valido.",
-      "json": ":attribute deve essere una stringa JSON valida.",
-      "lt": {
-        "array": ":attribute deve contenere meno di :value elementi.",
-        "file": ":attribute deve essere minore di :value kilobyte.",
-        "numeric": ":attribute deve essere minore di :value.",
-        "string": ":attribute deve contenere meno di :value caratteri."
-      },
-      "lte": {
-        "array": ":attribute deve contenere un numero di elementi minore o uguale a :value.",
-        "file": ":attribute deve essere minore o uguale a :value kilobyte.",
-        "numeric": ":attribute deve essere minore o uguale a :value.",
-        "string": ":attribute deve contenere un numero di caratteri minore o uguale a :value."
-      },
-      "max": {
-        "array": ":attribute non pu\xF2 avere pi\xF9 di :max elementi.",
-        "file": ":attribute non pu\xF2 essere superiore a :max kilobyte.",
-        "numeric": ":attribute non pu\xF2 essere superiore a :max.",
-        "string": ":attribute non pu\xF2 contenere pi\xF9 di :max caratteri."
-      },
-      "mimes": ":attribute deve essere del tipo: :values.",
-      "mimetypes": ":attribute deve essere del tipo: :values.",
-      "min": {
-        "array": ":attribute deve avere almeno :min elementi.",
-        "file": ":attribute deve essere almeno di :min kilobyte.",
-        "numeric": ":attribute deve essere almeno :min.",
-        "string": ":attribute deve contenere almeno :min caratteri."
-      },
-      "not_in": "Il valore selezionato per :attribute non \xE8 valido.",
-      "not_regex": "Il formato di :attribute non \xE8 valido.",
-      "numeric": ":attribute deve essere un numero.",
-      "present": "Il campo :attribute deve essere presente.",
-      "regex": "Il formato del campo :attribute non \xE8 valido.",
-      "required": "Il campo :attribute \xE8 richiesto.",
-      "required_if": "Il campo :attribute \xE8 richiesto quando :other \xE8 :value.",
-      "required_unless": "Il campo :attribute \xE8 richiesto a meno che :other sia in :values.",
-      "required_with": "Il campo :attribute \xE8 richiesto quando :values \xE8 presente.",
-      "required_with_all": "Il campo :attribute \xE8 richiesto quando :values sono presenti.",
-      "required_without": "Il campo :attribute \xE8 richiesto quando :values non \xE8 presente.",
-      "required_without_all": "Il campo :attribute \xE8 richiesto quando nessuno di :values \xE8 presente.",
-      "same": ":attribute e :other devono coincidere.",
-      "size": {
-        "array": ":attribute deve contenere :size elementi.",
-        "file": ":attribute deve essere :size kilobyte.",
-        "numeric": ":attribute deve essere :size.",
-        "string": ":attribute deve contenere :size caratteri."
-      },
-      "starts_with": ":attribute deve iniziare con uno dei seguenti: :values",
-      "string": ":attribute deve essere una stringa.",
-      "timezone": ":attribute deve essere una zona valida.",
-      "unique": ":attribute \xE8 stato gi\xE0 utilizzato.",
-      "uploaded": ":attribute non \xE8 stato caricato.",
-      "url": "Il formato del campo :attribute non \xE8 valido.",
-      "uuid": ":attribute deve essere un UUID valido."
-    }
-  });
-})();
+};
 
 /***/ }),
 
