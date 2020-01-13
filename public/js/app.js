@@ -1932,8 +1932,12 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/src/js.cookie.js");
-/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(js_cookie__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lang.js */ "./node_modules/lang.js/src/lang.js");
+/* harmony import */ var lang_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lang_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/src/js.cookie.js");
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(js_cookie__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _messages__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../messages */ "./resources/js/messages.js");
+/* harmony import */ var _messages__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_messages__WEBPACK_IMPORTED_MODULE_2__);
 //
 //
 //
@@ -1943,13 +1947,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CookieBannerConsentment",
+  data: function data() {
+    return {
+      shoudBeDisplayed: false
+    };
+  },
   methods: {
     handleCookieStorageApproval: function handleCookieStorageApproval() {
-      js_cookie__WEBPACK_IMPORTED_MODULE_0___default.a.set('user_has_agree_to_cookie_storage', 'true', {
+      js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.set('user_has_agree_to_cookie_storage', 'true', {
         expires: 10
       });
+      this.shoudBeDisplayed = false;
+    }
+  },
+  mounted: function mounted() {
+    var lang = new lang_js__WEBPACK_IMPORTED_MODULE_0___default.a({
+      messages: _messages__WEBPACK_IMPORTED_MODULE_2___default.a
+    });
+    console.log(lang);
+
+    if (js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.get('user_has_agree_to_cookie_storage') === undefined) {
+      this.shoudBeDisplayed = true;
     }
   }
 });
@@ -6483,6 +6505,112 @@ __webpack_require__.r(__webpack_exports__);
 
 })));
 //# sourceMappingURL=bootstrap.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CookieBannerConsentment.vue?vue&type=style&index=0&id=4331130d&scoped=true&lang=css&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CookieBannerConsentment.vue?vue&type=style&index=0&id=4331130d&scoped=true&lang=css& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.hidden[data-v-4331130d] {\n    display: none;\n}\n.block[data-v-4331130d]{\n    display: block;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/lib/css-base.js":
+/*!*************************************************!*\
+  !*** ./node_modules/css-loader/lib/css-base.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
 
 
 /***/ }),
@@ -17270,6 +17398,705 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 	}
 
 	return init(function () {});
+}));
+
+
+/***/ }),
+
+/***/ "./node_modules/lang.js/src/lang.js":
+/*!******************************************!*\
+  !*** ./node_modules/lang.js/src/lang.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+ *  Lang.js for Laravel localization in JavaScript.
+ *
+ *  @version 1.1.12
+ *  @license MIT https://github.com/rmariuzzo/Lang.js/blob/master/LICENSE
+ *  @site    https://github.com/rmariuzzo/Lang.js
+ *  @author  Rubens Mariuzzo <rubens@mariuzzo.com>
+ */
+
+(function(root, factory) {
+    'use strict';
+
+    if (true) {
+        // AMD support.
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+
+}(this, function() {
+    'use strict';
+
+    function inferLocale() {
+        if (typeof document !== 'undefined' && document.documentElement) {
+            return document.documentElement.lang;
+        }
+    };
+
+    function convertNumber(str) {
+        if (str === '-Inf') {
+            return -Infinity;
+        } else if (str === '+Inf' || str === 'Inf' || str === '*') {
+            return Infinity;
+        }
+        return parseInt(str, 10);
+    }
+
+    // Derived from: https://github.com/symfony/translation/blob/460390765eb7bb9338a4a323b8a4e815a47541ba/Interval.php
+    var intervalRegexp = /^({\s*(\-?\d+(\.\d+)?[\s*,\s*\-?\d+(\.\d+)?]*)\s*})|([\[\]])\s*(-Inf|\*|\-?\d+(\.\d+)?)\s*,\s*(\+?Inf|\*|\-?\d+(\.\d+)?)\s*([\[\]])$/;
+    var anyIntervalRegexp = /({\s*(\-?\d+(\.\d+)?[\s*,\s*\-?\d+(\.\d+)?]*)\s*})|([\[\]])\s*(-Inf|\*|\-?\d+(\.\d+)?)\s*,\s*(\+?Inf|\*|\-?\d+(\.\d+)?)\s*([\[\]])/;
+
+    // Default options //
+
+    var defaults = {
+        locale: 'en'/** The default locale if not set. */
+    };
+
+    // Constructor //
+
+    var Lang = function(options) {
+        options = options || {};
+        this.locale = options.locale || inferLocale() || defaults.locale;
+        this.fallback = options.fallback;
+        this.messages = options.messages;
+    };
+
+    // Methods //
+
+    /**
+     * Set messages source.
+     *
+     * @param messages {object} The messages source.
+     *
+     * @return void
+     */
+    Lang.prototype.setMessages = function(messages) {
+        this.messages = messages;
+    };
+
+    /**
+     * Get the current locale.
+     *
+     * @return {string} The current locale.
+     */
+    Lang.prototype.getLocale = function() {
+        return this.locale || this.fallback;
+    };
+
+    /**
+     * Set the current locale.
+     *
+     * @param locale {string} The locale to set.
+     *
+     * @return void
+     */
+    Lang.prototype.setLocale = function(locale) {
+        this.locale = locale;
+    };
+
+    /**
+     * Get the fallback locale being used.
+     *
+     * @return void
+     */
+    Lang.prototype.getFallback = function() {
+        return this.fallback;
+    };
+
+    /**
+     * Set the fallback locale being used.
+     *
+     * @param fallback {string} The fallback locale.
+     *
+     * @return void
+     */
+    Lang.prototype.setFallback = function(fallback) {
+        this.fallback = fallback;
+    };
+
+    /**
+     * This method act as an alias to get() method.
+     *
+     * @param key {string} The key of the message.
+     * @param locale {string} The locale of the message
+     *
+     * @return {boolean} true if the given key is defined on the messages source, otherwise false.
+     */
+    Lang.prototype.has = function(key, locale) {
+        if (typeof key !== 'string' || !this.messages) {
+            return false;
+        }
+
+        return this._getMessage(key, locale) !== null;
+    };
+
+    /**
+     * Get a translation message.
+     *
+     * @param key {string} The key of the message.
+     * @param replacements {object} The replacements to be done in the message.
+     * @param locale {string} The locale to use, if not passed use the default locale.
+     *
+     * @return {string} The translation message, if not found the given key.
+     */
+    Lang.prototype.get = function(key, replacements, locale) {
+        if (!this.has(key, locale)) {
+            return key;
+        }
+
+        var message = this._getMessage(key, locale);
+        if (message === null) {
+            return key;
+        }
+
+        if (replacements) {
+            message = this._applyReplacements(message, replacements);
+        }
+
+        return message;
+    };
+
+    /**
+     * This method act as an alias to get() method.
+     *
+     * @param key {string} The key of the message.
+     * @param replacements {object} The replacements to be done in the message.
+     *
+     * @return {string} The translation message, if not found the given key.
+     */
+    Lang.prototype.trans = function(key, replacements) {
+        return this.get(key, replacements);
+    };
+
+    /**
+     * Gets the plural or singular form of the message specified based on an integer value.
+     *
+     * @param key {string} The key of the message.
+     * @param count {number} The number of elements.
+     * @param replacements {object} The replacements to be done in the message.
+     * @param locale {string} The locale to use, if not passed use the default locale.
+     *
+     * @return {string} The translation message according to an integer value.
+     */
+    Lang.prototype.choice = function(key, number, replacements, locale) {
+        // Set default values for parameters replace and locale
+        replacements = typeof replacements !== 'undefined'
+            ? replacements
+            : {};
+
+        // The count must be replaced if found in the message
+        replacements.count = number;
+
+        // Message to get the plural or singular
+        var message = this.get(key, replacements, locale);
+
+        // Check if message is not null or undefined
+        if (message === null || message === undefined) {
+            return message;
+        }
+
+        // Separate the plural from the singular, if any
+        var messageParts = message.split('|');
+
+        // Get the explicit rules, If any
+        var explicitRules = [];
+
+        for (var i = 0; i < messageParts.length; i++) {
+            messageParts[i] = messageParts[i].trim();
+
+            if (anyIntervalRegexp.test(messageParts[i])) {
+                var messageSpaceSplit = messageParts[i].split(/\s/);
+                explicitRules.push(messageSpaceSplit.shift());
+                messageParts[i] = messageSpaceSplit.join(' ');
+            }
+        }
+
+        // Check if there's only one message
+        if (messageParts.length === 1) {
+            // Nothing to do here
+            return message;
+        }
+
+        // Check the explicit rules
+        for (var j = 0; j < explicitRules.length; j++) {
+            if (this._testInterval(number, explicitRules[j])) {
+                return messageParts[j];
+            }
+        }
+
+        locale = locale || this._getLocale(key);
+        var pluralForm = this._getPluralForm(number, locale);
+
+        return messageParts[pluralForm];
+    };
+
+    /**
+     * This method act as an alias to choice() method.
+     *
+     * @param key {string} The key of the message.
+     * @param count {number} The number of elements.
+     * @param replacements {object} The replacements to be done in the message.
+     *
+     * @return {string} The translation message according to an integer value.
+     */
+    Lang.prototype.transChoice = function(key, count, replacements) {
+        return this.choice(key, count, replacements);
+    };
+
+    /**
+     * Parse a message key into components.
+     *
+     * @param key {string} The message key to parse.
+     * @param key {string} The message locale to parse
+     * @return {object} A key object with source and entries properties.
+     */
+    Lang.prototype._parseKey = function(key, locale) {
+        if (typeof key !== 'string' || typeof locale !== 'string') {
+            return null;
+        }
+
+        var segments = key.split('.');
+        var source = segments[0].replace(/\//g, '.');
+
+        return {
+            source: locale + '.' + source,
+            sourceFallback: this.getFallback() + '.' + source,
+            entries: segments.slice(1)
+        };
+    };
+
+    /**
+     * Returns a translation message. Use `Lang.get()` method instead, this methods assumes the key exists.
+     *
+     * @param key {string} The key of the message.
+     * @param locale {string} The locale of the message
+     *
+     * @return {string} The translation message for the given key.
+     */
+    Lang.prototype._getMessage = function(key, locale) {
+        locale = locale || this.getLocale();
+        
+        key = this._parseKey(key, locale);
+
+        // Ensure message source exists.
+        if (this.messages[key.source] === undefined && this.messages[key.sourceFallback] === undefined) {
+            return null;
+        }
+
+        // Get message from default locale.
+        var message = this.messages[key.source];
+        var entries = key.entries.slice();
+        var subKey = entries.join('.');
+        message = message !== undefined ? this._getValueInKey(message, subKey) : undefined;
+
+
+        // Get message from fallback locale.
+        if (typeof message !== 'string' && this.messages[key.sourceFallback]) {
+            message = this.messages[key.sourceFallback];
+            entries = key.entries.slice();
+            subKey = '';
+            while (entries.length && message !== undefined) {
+                var subKey = !subKey ? entries.shift() : subKey.concat('.', entries.shift());
+                if (message[subKey]) {
+                    message = message[subKey]
+                    subKey = '';
+                }
+            }
+        }
+
+        if (typeof message !== 'string') {
+            return null;
+        }
+
+        return message;
+    };
+
+    Lang.prototype._getValueInKey = function(obj, str) {
+        // If the full key exists just return the value
+        if (typeof obj[str] === 'string') {
+            return obj[str]
+        }
+
+        str = str.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
+        str = str.replace(/^\./, '');           // strip a leading dot
+
+        var parts = str.split('.');
+
+        for (var i = 0, n = parts.length; i < n; ++i) {
+            var currentKey = parts.slice(0, i + 1).join('.');
+            var restOfTheKey = parts.slice(i + 1, parts.length).join('.')
+            
+            if (obj[currentKey]) {
+                return this._getValueInKey(obj[currentKey], restOfTheKey)
+            }
+        }
+
+        return obj;
+    };
+
+    /**
+     * Return the locale to be used between default and fallback.
+     * @param {String} key
+     * @return {String}
+     */
+    Lang.prototype._getLocale = function(key) {
+        key = this._parseKey(key, this.locale)
+        if (this.messages[key.source]) {
+            return this.locale;
+        }
+        if (this.messages[key.sourceFallback]) {
+            return this.fallback;
+        }
+        return null;
+    };
+
+    /**
+     * Find a message in a translation tree using both dotted keys and regular ones
+     *
+     * @param pathSegments {array} An array of path segments such as ['family', 'father']
+     * @param tree {object} The translation tree
+     */
+    Lang.prototype._findMessageInTree = function(pathSegments, tree) {
+        while (pathSegments.length && tree !== undefined) {
+            var dottedKey = pathSegments.join('.');
+            if (tree[dottedKey]) {
+                tree = tree[dottedKey];
+                break;
+            }
+
+            tree = tree[pathSegments.shift()]
+        }
+
+        return tree;
+    };
+
+    /**
+     * Sort replacement keys by length in descending order.
+     *
+     * @param a {string} Replacement key
+     * @param b {string} Sibling replacement key
+     * @return {number}
+     * @private
+     */
+    Lang.prototype._sortReplacementKeys = function(a, b) {
+        return b.length - a.length;
+    };
+
+    /**
+     * Apply replacements to a string message containing placeholders.
+     *
+     * @param message {string} The text message.
+     * @param replacements {object} The replacements to be done in the message.
+     *
+     * @return {string} The string message with replacements applied.
+     */
+    Lang.prototype._applyReplacements = function(message, replacements) {
+        var keys = Object.keys(replacements).sort(this._sortReplacementKeys);
+
+        keys.forEach(function(replace) {
+            message = message.replace(new RegExp(':' + replace, 'gi'), function (match) {
+                var value = replacements[replace];
+
+                // Capitalize all characters.
+                var allCaps = match === match.toUpperCase();
+                if (allCaps) {
+                    return value.toUpperCase();
+                }
+
+                // Capitalize first letter.
+                var firstCap = match === match.replace(/\w/i, function(letter) {
+                    return letter.toUpperCase();
+                });
+                if (firstCap) {
+                    return value.charAt(0).toUpperCase() + value.slice(1);
+                }
+
+                return value;
+            })
+        });
+        return message;
+    };
+
+    /**
+     * Checks if the given `count` is within the interval defined by the {string} `interval`
+     *
+     * @param  count     {int}    The amount of items.
+     * @param  interval  {string} The interval to be compared with the count.
+     * @return {boolean}          Returns true if count is within interval; false otherwise.
+     */
+    Lang.prototype._testInterval = function(count, interval) {
+        /**
+         * From the Symfony\Component\Translation\Interval Docs
+         *
+         * Tests if a given number belongs to a given math interval.
+         *
+         * An interval can represent a finite set of numbers:
+         *
+         *  {1,2,3,4}
+         *
+         * An interval can represent numbers between two numbers:
+         *
+         *  [1, +Inf]
+         *  ]-1,2[
+         *
+         * The left delimiter can be [ (inclusive) or ] (exclusive).
+         * The right delimiter can be [ (exclusive) or ] (inclusive).
+         * Beside numbers, you can use -Inf and +Inf for the infinite.
+         */
+
+        if (typeof interval !== 'string') {
+            throw 'Invalid interval: should be a string.';
+        }
+
+        interval = interval.trim();
+
+        var matches = interval.match(intervalRegexp);
+        if (!matches) {
+            throw 'Invalid interval: ' + interval;
+        }
+
+        if (matches[2]) {
+            var items = matches[2].split(',');
+            for (var i = 0; i < items.length; i++) {
+                if (parseInt(items[i], 10) === count) {
+                    return true;
+                }
+            }
+        } else {
+            // Remove falsy values.
+            matches = matches.filter(function(match) {
+                return !!match;
+            });
+
+            var leftDelimiter = matches[1];
+            var leftNumber = convertNumber(matches[2]);
+            if (leftNumber === Infinity) {
+                leftNumber = -Infinity;
+            }
+            var rightNumber = convertNumber(matches[3]);
+            var rightDelimiter = matches[4];
+
+            return (leftDelimiter === '[' ? count >= leftNumber : count > leftNumber)
+                && (rightDelimiter === ']' ? count <= rightNumber : count < rightNumber);
+        }
+
+        return false;
+    };
+
+    /**
+     * Returns the plural position to use for the given locale and number.
+     *
+     * The plural rules are derived from code of the Zend Framework (2010-09-25),
+     * which is subject to the new BSD license (http://framework.zend.com/license/new-bsd).
+     * Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+     *
+     * @param {Number} count
+     * @param {String} locale
+     * @return {Number}
+     */
+    Lang.prototype._getPluralForm = function(count, locale) {
+        switch (locale) {
+            case 'az':
+            case 'bo':
+            case 'dz':
+            case 'id':
+            case 'ja':
+            case 'jv':
+            case 'ka':
+            case 'km':
+            case 'kn':
+            case 'ko':
+            case 'ms':
+            case 'th':
+            case 'tr':
+            case 'vi':
+            case 'zh':
+                return 0;
+
+            case 'af':
+            case 'bn':
+            case 'bg':
+            case 'ca':
+            case 'da':
+            case 'de':
+            case 'el':
+            case 'en':
+            case 'eo':
+            case 'es':
+            case 'et':
+            case 'eu':
+            case 'fa':
+            case 'fi':
+            case 'fo':
+            case 'fur':
+            case 'fy':
+            case 'gl':
+            case 'gu':
+            case 'ha':
+            case 'he':
+            case 'hu':
+            case 'is':
+            case 'it':
+            case 'ku':
+            case 'lb':
+            case 'ml':
+            case 'mn':
+            case 'mr':
+            case 'nah':
+            case 'nb':
+            case 'ne':
+            case 'nl':
+            case 'nn':
+            case 'no':
+            case 'om':
+            case 'or':
+            case 'pa':
+            case 'pap':
+            case 'ps':
+            case 'pt':
+            case 'so':
+            case 'sq':
+            case 'sv':
+            case 'sw':
+            case 'ta':
+            case 'te':
+            case 'tk':
+            case 'ur':
+            case 'zu':
+                return (count == 1)
+                    ? 0
+                    : 1;
+
+            case 'am':
+            case 'bh':
+            case 'fil':
+            case 'fr':
+            case 'gun':
+            case 'hi':
+            case 'hy':
+            case 'ln':
+            case 'mg':
+            case 'nso':
+            case 'xbr':
+            case 'ti':
+            case 'wa':
+                return ((count === 0) || (count === 1))
+                    ? 0
+                    : 1;
+
+            case 'be':
+            case 'bs':
+            case 'hr':
+            case 'ru':
+            case 'sr':
+            case 'uk':
+                return ((count % 10 == 1) && (count % 100 != 11))
+                    ? 0
+                    : (((count % 10 >= 2) && (count % 10 <= 4) && ((count % 100 < 10) || (count % 100 >= 20)))
+                        ? 1
+                        : 2);
+
+            case 'cs':
+            case 'sk':
+                return (count == 1)
+                    ? 0
+                    : (((count >= 2) && (count <= 4))
+                        ? 1
+                        : 2);
+
+            case 'ga':
+                return (count == 1)
+                    ? 0
+                    : ((count == 2)
+                        ? 1
+                        : 2);
+
+            case 'lt':
+                return ((count % 10 == 1) && (count % 100 != 11))
+                    ? 0
+                    : (((count % 10 >= 2) && ((count % 100 < 10) || (count % 100 >= 20)))
+                        ? 1
+                        : 2);
+
+            case 'sl':
+                return (count % 100 == 1)
+                    ? 0
+                    : ((count % 100 == 2)
+                        ? 1
+                        : (((count % 100 == 3) || (count % 100 == 4))
+                            ? 2
+                            : 3));
+
+            case 'mk':
+                return (count % 10 == 1)
+                    ? 0
+                    : 1;
+
+            case 'mt':
+                return (count == 1)
+                    ? 0
+                    : (((count === 0) || ((count % 100 > 1) && (count % 100 < 11)))
+                        ? 1
+                        : (((count % 100 > 10) && (count % 100 < 20))
+                            ? 2
+                            : 3));
+
+            case 'lv':
+                return (count === 0)
+                    ? 0
+                    : (((count % 10 == 1) && (count % 100 != 11))
+                        ? 1
+                        : 2);
+
+            case 'pl':
+                return (count == 1)
+                    ? 0
+                    : (((count % 10 >= 2) && (count % 10 <= 4) && ((count % 100 < 12) || (count % 100 > 14)))
+                        ? 1
+                        : 2);
+
+            case 'cy':
+                return (count == 1)
+                    ? 0
+                    : ((count == 2)
+                        ? 1
+                        : (((count == 8) || (count == 11))
+                            ? 2
+                            : 3));
+
+            case 'ro':
+                return (count == 1)
+                    ? 0
+                    : (((count === 0) || ((count % 100 > 0) && (count % 100 < 20)))
+                        ? 1
+                        : 2);
+
+            case 'ar':
+                return (count === 0)
+                    ? 0
+                    : ((count == 1)
+                        ? 1
+                        : ((count == 2)
+                            ? 2
+                            : (((count % 100 >= 3) && (count % 100 <= 10))
+                                ? 3
+                                : (((count % 100 >= 11) && (count % 100 <= 99))
+                                    ? 4
+                                    : 5))));
+
+            default:
+                return 0;
+        }
+    };
+
+    return Lang;
+
 }));
 
 
@@ -37414,6 +38241,545 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CookieBannerConsentment.vue?vue&type=style&index=0&id=4331130d&scoped=true&lang=css&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CookieBannerConsentment.vue?vue&type=style&index=0&id=4331130d&scoped=true&lang=css& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./CookieBannerConsentment.vue?vue&type=style&index=0&id=4331130d&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CookieBannerConsentment.vue?vue&type=style&index=0&id=4331130d&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/lib/addStyles.js":
+/*!****************************************************!*\
+  !*** ./node_modules/style-loader/lib/addStyles.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+
+var stylesInDom = {};
+
+var	memoize = function (fn) {
+	var memo;
+
+	return function () {
+		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+		return memo;
+	};
+};
+
+var isOldIE = memoize(function () {
+	// Test for IE <= 9 as proposed by Browserhacks
+	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+	// Tests for existence of standard globals is to allow style-loader
+	// to operate correctly into non-standard environments
+	// @see https://github.com/webpack-contrib/style-loader/issues/177
+	return window && document && document.all && !window.atob;
+});
+
+var getTarget = function (target, parent) {
+  if (parent){
+    return parent.querySelector(target);
+  }
+  return document.querySelector(target);
+};
+
+var getElement = (function (fn) {
+	var memo = {};
+
+	return function(target, parent) {
+                // If passing function in options, then use it for resolve "head" element.
+                // Useful for Shadow Root style i.e
+                // {
+                //   insertInto: function () { return document.querySelector("#foo").shadowRoot }
+                // }
+                if (typeof target === 'function') {
+                        return target();
+                }
+                if (typeof memo[target] === "undefined") {
+			var styleTarget = getTarget.call(this, target, parent);
+			// Special case to return head of iframe instead of iframe itself
+			if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
+				try {
+					// This will throw an exception if access to iframe is blocked
+					// due to cross-origin restrictions
+					styleTarget = styleTarget.contentDocument.head;
+				} catch(e) {
+					styleTarget = null;
+				}
+			}
+			memo[target] = styleTarget;
+		}
+		return memo[target]
+	};
+})();
+
+var singleton = null;
+var	singletonCounter = 0;
+var	stylesInsertedAtTop = [];
+
+var	fixUrls = __webpack_require__(/*! ./urls */ "./node_modules/style-loader/lib/urls.js");
+
+module.exports = function(list, options) {
+	if (typeof DEBUG !== "undefined" && DEBUG) {
+		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+	}
+
+	options = options || {};
+
+	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
+
+	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+	// tags it will allow on a page
+	if (!options.singleton && typeof options.singleton !== "boolean") options.singleton = isOldIE();
+
+	// By default, add <style> tags to the <head> element
+        if (!options.insertInto) options.insertInto = "head";
+
+	// By default, add <style> tags to the bottom of the target
+	if (!options.insertAt) options.insertAt = "bottom";
+
+	var styles = listToStyles(list, options);
+
+	addStylesToDom(styles, options);
+
+	return function update (newList) {
+		var mayRemove = [];
+
+		for (var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+
+			domStyle.refs--;
+			mayRemove.push(domStyle);
+		}
+
+		if(newList) {
+			var newStyles = listToStyles(newList, options);
+			addStylesToDom(newStyles, options);
+		}
+
+		for (var i = 0; i < mayRemove.length; i++) {
+			var domStyle = mayRemove[i];
+
+			if(domStyle.refs === 0) {
+				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
+
+				delete stylesInDom[domStyle.id];
+			}
+		}
+	};
+};
+
+function addStylesToDom (styles, options) {
+	for (var i = 0; i < styles.length; i++) {
+		var item = styles[i];
+		var domStyle = stylesInDom[item.id];
+
+		if(domStyle) {
+			domStyle.refs++;
+
+			for(var j = 0; j < domStyle.parts.length; j++) {
+				domStyle.parts[j](item.parts[j]);
+			}
+
+			for(; j < item.parts.length; j++) {
+				domStyle.parts.push(addStyle(item.parts[j], options));
+			}
+		} else {
+			var parts = [];
+
+			for(var j = 0; j < item.parts.length; j++) {
+				parts.push(addStyle(item.parts[j], options));
+			}
+
+			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+		}
+	}
+}
+
+function listToStyles (list, options) {
+	var styles = [];
+	var newStyles = {};
+
+	for (var i = 0; i < list.length; i++) {
+		var item = list[i];
+		var id = options.base ? item[0] + options.base : item[0];
+		var css = item[1];
+		var media = item[2];
+		var sourceMap = item[3];
+		var part = {css: css, media: media, sourceMap: sourceMap};
+
+		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
+		else newStyles[id].parts.push(part);
+	}
+
+	return styles;
+}
+
+function insertStyleElement (options, style) {
+	var target = getElement(options.insertInto)
+
+	if (!target) {
+		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
+	}
+
+	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
+
+	if (options.insertAt === "top") {
+		if (!lastStyleElementInsertedAtTop) {
+			target.insertBefore(style, target.firstChild);
+		} else if (lastStyleElementInsertedAtTop.nextSibling) {
+			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
+		} else {
+			target.appendChild(style);
+		}
+		stylesInsertedAtTop.push(style);
+	} else if (options.insertAt === "bottom") {
+		target.appendChild(style);
+	} else if (typeof options.insertAt === "object" && options.insertAt.before) {
+		var nextSibling = getElement(options.insertAt.before, target);
+		target.insertBefore(style, nextSibling);
+	} else {
+		throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
+	}
+}
+
+function removeStyleElement (style) {
+	if (style.parentNode === null) return false;
+	style.parentNode.removeChild(style);
+
+	var idx = stylesInsertedAtTop.indexOf(style);
+	if(idx >= 0) {
+		stylesInsertedAtTop.splice(idx, 1);
+	}
+}
+
+function createStyleElement (options) {
+	var style = document.createElement("style");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+
+	if(options.attrs.nonce === undefined) {
+		var nonce = getNonce();
+		if (nonce) {
+			options.attrs.nonce = nonce;
+		}
+	}
+
+	addAttrs(style, options.attrs);
+	insertStyleElement(options, style);
+
+	return style;
+}
+
+function createLinkElement (options) {
+	var link = document.createElement("link");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+	options.attrs.rel = "stylesheet";
+
+	addAttrs(link, options.attrs);
+	insertStyleElement(options, link);
+
+	return link;
+}
+
+function addAttrs (el, attrs) {
+	Object.keys(attrs).forEach(function (key) {
+		el.setAttribute(key, attrs[key]);
+	});
+}
+
+function getNonce() {
+	if (false) {}
+
+	return __webpack_require__.nc;
+}
+
+function addStyle (obj, options) {
+	var style, update, remove, result;
+
+	// If a transform function was defined, run it on the css
+	if (options.transform && obj.css) {
+	    result = typeof options.transform === 'function'
+		 ? options.transform(obj.css) 
+		 : options.transform.default(obj.css);
+
+	    if (result) {
+	    	// If transform returns a value, use that instead of the original css.
+	    	// This allows running runtime transformations on the css.
+	    	obj.css = result;
+	    } else {
+	    	// If the transform function returns a falsy value, don't add this css.
+	    	// This allows conditional loading of css
+	    	return function() {
+	    		// noop
+	    	};
+	    }
+	}
+
+	if (options.singleton) {
+		var styleIndex = singletonCounter++;
+
+		style = singleton || (singleton = createStyleElement(options));
+
+		update = applyToSingletonTag.bind(null, style, styleIndex, false);
+		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+
+	} else if (
+		obj.sourceMap &&
+		typeof URL === "function" &&
+		typeof URL.createObjectURL === "function" &&
+		typeof URL.revokeObjectURL === "function" &&
+		typeof Blob === "function" &&
+		typeof btoa === "function"
+	) {
+		style = createLinkElement(options);
+		update = updateLink.bind(null, style, options);
+		remove = function () {
+			removeStyleElement(style);
+
+			if(style.href) URL.revokeObjectURL(style.href);
+		};
+	} else {
+		style = createStyleElement(options);
+		update = applyToTag.bind(null, style);
+		remove = function () {
+			removeStyleElement(style);
+		};
+	}
+
+	update(obj);
+
+	return function updateStyle (newObj) {
+		if (newObj) {
+			if (
+				newObj.css === obj.css &&
+				newObj.media === obj.media &&
+				newObj.sourceMap === obj.sourceMap
+			) {
+				return;
+			}
+
+			update(obj = newObj);
+		} else {
+			remove();
+		}
+	};
+}
+
+var replaceText = (function () {
+	var textStore = [];
+
+	return function (index, replacement) {
+		textStore[index] = replacement;
+
+		return textStore.filter(Boolean).join('\n');
+	};
+})();
+
+function applyToSingletonTag (style, index, remove, obj) {
+	var css = remove ? "" : obj.css;
+
+	if (style.styleSheet) {
+		style.styleSheet.cssText = replaceText(index, css);
+	} else {
+		var cssNode = document.createTextNode(css);
+		var childNodes = style.childNodes;
+
+		if (childNodes[index]) style.removeChild(childNodes[index]);
+
+		if (childNodes.length) {
+			style.insertBefore(cssNode, childNodes[index]);
+		} else {
+			style.appendChild(cssNode);
+		}
+	}
+}
+
+function applyToTag (style, obj) {
+	var css = obj.css;
+	var media = obj.media;
+
+	if(media) {
+		style.setAttribute("media", media)
+	}
+
+	if(style.styleSheet) {
+		style.styleSheet.cssText = css;
+	} else {
+		while(style.firstChild) {
+			style.removeChild(style.firstChild);
+		}
+
+		style.appendChild(document.createTextNode(css));
+	}
+}
+
+function updateLink (link, options, obj) {
+	var css = obj.css;
+	var sourceMap = obj.sourceMap;
+
+	/*
+		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
+		and there is no publicPath defined then lets turn convertToAbsoluteUrls
+		on by default.  Otherwise default to the convertToAbsoluteUrls option
+		directly
+	*/
+	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
+
+	if (options.convertToAbsoluteUrls || autoFixUrls) {
+		css = fixUrls(css);
+	}
+
+	if (sourceMap) {
+		// http://stackoverflow.com/a/26603875
+		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+	}
+
+	var blob = new Blob([css], { type: "text/css" });
+
+	var oldSrc = link.href;
+
+	link.href = URL.createObjectURL(blob);
+
+	if(oldSrc) URL.revokeObjectURL(oldSrc);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/lib/urls.js":
+/*!***********************************************!*\
+  !*** ./node_modules/style-loader/lib/urls.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+/**
+ * When source maps are enabled, `style-loader` uses a link element with a data-uri to
+ * embed the css on the page. This breaks all relative urls because now they are relative to a
+ * bundle instead of the current page.
+ *
+ * One solution is to only use full urls, but that may be impossible.
+ *
+ * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
+ *
+ * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
+ *
+ */
+
+module.exports = function (css) {
+  // get current location
+  var location = typeof window !== "undefined" && window.location;
+
+  if (!location) {
+    throw new Error("fixUrls requires window.location");
+  }
+
+	// blank or null?
+	if (!css || typeof css !== "string") {
+	  return css;
+  }
+
+  var baseUrl = location.protocol + "//" + location.host;
+  var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
+
+	// convert each url(...)
+	/*
+	This regular expression is just a way to recursively match brackets within
+	a string.
+
+	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
+	   (  = Start a capturing group
+	     (?:  = Start a non-capturing group
+	         [^)(]  = Match anything that isn't a parentheses
+	         |  = OR
+	         \(  = Match a start parentheses
+	             (?:  = Start another non-capturing groups
+	                 [^)(]+  = Match anything that isn't a parentheses
+	                 |  = OR
+	                 \(  = Match a start parentheses
+	                     [^)(]*  = Match anything that isn't a parentheses
+	                 \)  = Match a end parentheses
+	             )  = End Group
+              *\) = Match anything and then a close parens
+          )  = Close non-capturing group
+          *  = Match anything
+       )  = Close capturing group
+	 \)  = Match a close parens
+
+	 /gi  = Get all matches, not the first.  Be case insensitive.
+	 */
+	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(fullMatch, origUrl) {
+		// strip quotes (if they exist)
+		var unquotedOrigUrl = origUrl
+			.trim()
+			.replace(/^"(.*)"$/, function(o, $1){ return $1; })
+			.replace(/^'(.*)'$/, function(o, $1){ return $1; });
+
+		// already a full url? no change
+		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(unquotedOrigUrl)) {
+		  return fullMatch;
+		}
+
+		// convert the url to a full url
+		var newUrl;
+
+		if (unquotedOrigUrl.indexOf("//") === 0) {
+		  	//TODO: should we add protocol?
+			newUrl = unquotedOrigUrl;
+		} else if (unquotedOrigUrl.indexOf("/") === 0) {
+			// path should be relative to the base url
+			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
+		} else {
+			// path should be relative to current directory
+			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
+		}
+
+		// send back the fixed url(...)
+		return "url(" + JSON.stringify(newUrl) + ")";
+	});
+
+	// send back the fixed css
+	return fixedCss;
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/timers-browserify/main.js":
 /*!************************************************!*\
   !*** ./node_modules/timers-browserify/main.js ***!
@@ -37504,7 +38870,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("p", [
+  return _c("p", { class: _vm.shoudBeDisplayed ? "block" : "hidden" }, [
     _vm._v("Discover, share and live unique experieences near you.\n    "),
     _c("a", { attrs: { href: "#" } }, [_vm._v(" Learn More")]),
     _vm._v(" "),
@@ -49704,8 +51070,8 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
  *
  * Eg. ./components/HelloComponent.vue -> <example-component></example-component>
  */
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+//const files = require.context('./', true, /\.vue$/i)
+//files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('cookie-banner-consentment', __webpack_require__(/*! ./components/CookieBannerConsentment.vue */ "./resources/js/components/CookieBannerConsentment.vue")["default"]);
 /**
@@ -49776,7 +51142,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CookieBannerConsentment_vue_vue_type_template_id_4331130d_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CookieBannerConsentment.vue?vue&type=template&id=4331130d&scoped=true& */ "./resources/js/components/CookieBannerConsentment.vue?vue&type=template&id=4331130d&scoped=true&");
 /* harmony import */ var _CookieBannerConsentment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CookieBannerConsentment.vue?vue&type=script&lang=js& */ "./resources/js/components/CookieBannerConsentment.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _CookieBannerConsentment_vue_vue_type_style_index_0_id_4331130d_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CookieBannerConsentment.vue?vue&type=style&index=0&id=4331130d&scoped=true&lang=css& */ "./resources/js/components/CookieBannerConsentment.vue?vue&type=style&index=0&id=4331130d&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -49784,7 +51152,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _CookieBannerConsentment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _CookieBannerConsentment_vue_vue_type_template_id_4331130d_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
   _CookieBannerConsentment_vue_vue_type_template_id_4331130d_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
@@ -49816,6 +51184,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/CookieBannerConsentment.vue?vue&type=style&index=0&id=4331130d&scoped=true&lang=css&":
+/*!**********************************************************************************************************************!*\
+  !*** ./resources/js/components/CookieBannerConsentment.vue?vue&type=style&index=0&id=4331130d&scoped=true&lang=css& ***!
+  \**********************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CookieBannerConsentment_vue_vue_type_style_index_0_id_4331130d_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./CookieBannerConsentment.vue?vue&type=style&index=0&id=4331130d&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CookieBannerConsentment.vue?vue&type=style&index=0&id=4331130d&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CookieBannerConsentment_vue_vue_type_style_index_0_id_4331130d_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CookieBannerConsentment_vue_vue_type_style_index_0_id_4331130d_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CookieBannerConsentment_vue_vue_type_style_index_0_id_4331130d_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CookieBannerConsentment_vue_vue_type_style_index_0_id_4331130d_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CookieBannerConsentment_vue_vue_type_style_index_0_id_4331130d_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
 /***/ "./resources/js/components/CookieBannerConsentment.vue?vue&type=template&id=4331130d&scoped=true&":
 /*!********************************************************************************************************!*\
   !*** ./resources/js/components/CookieBannerConsentment.vue?vue&type=template&id=4331130d&scoped=true& ***!
@@ -49831,6 +51215,1059 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CookieBannerConsentment_vue_vue_type_template_id_4331130d_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/messages.js":
+/*!**********************************!*\
+  !*** ./resources/js/messages.js ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+/*!
+ *  Lang.js for Laravel localization in JavaScript.
+ *
+ *  @version 1.1.10
+ *  @license MIT https://github.com/rmariuzzo/Lang.js/blob/master/LICENSE
+ *  @site    https://github.com/rmariuzzo/Lang.js
+ *  @author  Rubens Mariuzzo <rubens@mariuzzo.com>
+ */
+(function (root, factory) {
+  "use strict";
+
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else {}
+})(this, function () {
+  "use strict";
+
+  function inferLocale() {
+    if (typeof document !== "undefined" && document.documentElement) {
+      return document.documentElement.lang;
+    }
+  }
+
+  function convertNumber(str) {
+    if (str === "-Inf") {
+      return -Infinity;
+    } else if (str === "+Inf" || str === "Inf" || str === "*") {
+      return Infinity;
+    }
+
+    return parseInt(str, 10);
+  }
+
+  var intervalRegexp = /^({\s*(\-?\d+(\.\d+)?[\s*,\s*\-?\d+(\.\d+)?]*)\s*})|([\[\]])\s*(-Inf|\*|\-?\d+(\.\d+)?)\s*,\s*(\+?Inf|\*|\-?\d+(\.\d+)?)\s*([\[\]])$/;
+  var anyIntervalRegexp = /({\s*(\-?\d+(\.\d+)?[\s*,\s*\-?\d+(\.\d+)?]*)\s*})|([\[\]])\s*(-Inf|\*|\-?\d+(\.\d+)?)\s*,\s*(\+?Inf|\*|\-?\d+(\.\d+)?)\s*([\[\]])/;
+  var defaults = {
+    locale: "en"
+  };
+
+  var Lang = function Lang(options) {
+    options = options || {};
+    this.locale = options.locale || inferLocale() || defaults.locale;
+    this.fallback = options.fallback;
+    this.messages = options.messages;
+  };
+
+  Lang.prototype.setMessages = function (messages) {
+    this.messages = messages;
+  };
+
+  Lang.prototype.getLocale = function () {
+    return this.locale || this.fallback;
+  };
+
+  Lang.prototype.setLocale = function (locale) {
+    this.locale = locale;
+  };
+
+  Lang.prototype.getFallback = function () {
+    return this.fallback;
+  };
+
+  Lang.prototype.setFallback = function (fallback) {
+    this.fallback = fallback;
+  };
+
+  Lang.prototype.has = function (key, locale) {
+    if (typeof key !== "string" || !this.messages) {
+      return false;
+    }
+
+    return this._getMessage(key, locale) !== null;
+  };
+
+  Lang.prototype.get = function (key, replacements, locale) {
+    if (!this.has(key, locale)) {
+      return key;
+    }
+
+    var message = this._getMessage(key, locale);
+
+    if (message === null) {
+      return key;
+    }
+
+    if (replacements) {
+      message = this._applyReplacements(message, replacements);
+    }
+
+    return message;
+  };
+
+  Lang.prototype.trans = function (key, replacements) {
+    return this.get(key, replacements);
+  };
+
+  Lang.prototype.choice = function (key, number, replacements, locale) {
+    replacements = typeof replacements !== "undefined" ? replacements : {};
+    replacements.count = number;
+    var message = this.get(key, replacements, locale);
+
+    if (message === null || message === undefined) {
+      return message;
+    }
+
+    var messageParts = message.split("|");
+    var explicitRules = [];
+
+    for (var i = 0; i < messageParts.length; i++) {
+      messageParts[i] = messageParts[i].trim();
+
+      if (anyIntervalRegexp.test(messageParts[i])) {
+        var messageSpaceSplit = messageParts[i].split(/\s/);
+        explicitRules.push(messageSpaceSplit.shift());
+        messageParts[i] = messageSpaceSplit.join(" ");
+      }
+    }
+
+    if (messageParts.length === 1) {
+      return message;
+    }
+
+    for (var j = 0; j < explicitRules.length; j++) {
+      if (this._testInterval(number, explicitRules[j])) {
+        return messageParts[j];
+      }
+    }
+
+    var pluralForm = this._getPluralForm(number);
+
+    return messageParts[pluralForm];
+  };
+
+  Lang.prototype.transChoice = function (key, count, replacements) {
+    return this.choice(key, count, replacements);
+  };
+
+  Lang.prototype._parseKey = function (key, locale) {
+    if (typeof key !== "string" || typeof locale !== "string") {
+      return null;
+    }
+
+    var segments = key.split(".");
+    var source = segments[0].replace(/\//g, ".");
+    return {
+      source: locale + "." + source,
+      sourceFallback: this.getFallback() + "." + source,
+      entries: segments.slice(1)
+    };
+  };
+
+  Lang.prototype._getMessage = function (key, locale) {
+    locale = locale || this.getLocale();
+    key = this._parseKey(key, locale);
+
+    if (this.messages[key.source] === undefined && this.messages[key.sourceFallback] === undefined) {
+      return null;
+    }
+
+    var message = this.messages[key.source];
+    var entries = key.entries.slice();
+    var subKey = "";
+
+    while (entries.length && message !== undefined) {
+      var subKey = !subKey ? entries.shift() : subKey.concat(".", entries.shift());
+
+      if (message[subKey] !== undefined) {
+        message = message[subKey];
+        subKey = "";
+      }
+    }
+
+    if (typeof message !== "string" && this.messages[key.sourceFallback]) {
+      message = this.messages[key.sourceFallback];
+      entries = key.entries.slice();
+      subKey = "";
+
+      while (entries.length && message !== undefined) {
+        var subKey = !subKey ? entries.shift() : subKey.concat(".", entries.shift());
+
+        if (message[subKey]) {
+          message = message[subKey];
+          subKey = "";
+        }
+      }
+    }
+
+    if (typeof message !== "string") {
+      return null;
+    }
+
+    return message;
+  };
+
+  Lang.prototype._findMessageInTree = function (pathSegments, tree) {
+    while (pathSegments.length && tree !== undefined) {
+      var dottedKey = pathSegments.join(".");
+
+      if (tree[dottedKey]) {
+        tree = tree[dottedKey];
+        break;
+      }
+
+      tree = tree[pathSegments.shift()];
+    }
+
+    return tree;
+  };
+
+  Lang.prototype._applyReplacements = function (message, replacements) {
+    for (var replace in replacements) {
+      message = message.replace(new RegExp(":" + replace, "gi"), function (match) {
+        var value = replacements[replace];
+        var allCaps = match === match.toUpperCase();
+
+        if (allCaps) {
+          return value.toUpperCase();
+        }
+
+        var firstCap = match === match.replace(/\w/i, function (letter) {
+          return letter.toUpperCase();
+        });
+
+        if (firstCap) {
+          return value.charAt(0).toUpperCase() + value.slice(1);
+        }
+
+        return value;
+      });
+    }
+
+    return message;
+  };
+
+  Lang.prototype._testInterval = function (count, interval) {
+    if (typeof interval !== "string") {
+      throw "Invalid interval: should be a string.";
+    }
+
+    interval = interval.trim();
+    var matches = interval.match(intervalRegexp);
+
+    if (!matches) {
+      throw "Invalid interval: " + interval;
+    }
+
+    if (matches[2]) {
+      var items = matches[2].split(",");
+
+      for (var i = 0; i < items.length; i++) {
+        if (parseInt(items[i], 10) === count) {
+          return true;
+        }
+      }
+    } else {
+      matches = matches.filter(function (match) {
+        return !!match;
+      });
+      var leftDelimiter = matches[1];
+      var leftNumber = convertNumber(matches[2]);
+
+      if (leftNumber === Infinity) {
+        leftNumber = -Infinity;
+      }
+
+      var rightNumber = convertNumber(matches[3]);
+      var rightDelimiter = matches[4];
+      return (leftDelimiter === "[" ? count >= leftNumber : count > leftNumber) && (rightDelimiter === "]" ? count <= rightNumber : count < rightNumber);
+    }
+
+    return false;
+  };
+
+  Lang.prototype._getPluralForm = function (count) {
+    switch (this.locale) {
+      case "az":
+      case "bo":
+      case "dz":
+      case "id":
+      case "ja":
+      case "jv":
+      case "ka":
+      case "km":
+      case "kn":
+      case "ko":
+      case "ms":
+      case "th":
+      case "tr":
+      case "vi":
+      case "zh":
+        return 0;
+
+      case "af":
+      case "bn":
+      case "bg":
+      case "ca":
+      case "da":
+      case "de":
+      case "el":
+      case "en":
+      case "eo":
+      case "es":
+      case "et":
+      case "eu":
+      case "fa":
+      case "fi":
+      case "fo":
+      case "fur":
+      case "fy":
+      case "gl":
+      case "gu":
+      case "ha":
+      case "he":
+      case "hu":
+      case "is":
+      case "it":
+      case "ku":
+      case "lb":
+      case "ml":
+      case "mn":
+      case "mr":
+      case "nah":
+      case "nb":
+      case "ne":
+      case "nl":
+      case "nn":
+      case "no":
+      case "om":
+      case "or":
+      case "pa":
+      case "pap":
+      case "ps":
+      case "pt":
+      case "so":
+      case "sq":
+      case "sv":
+      case "sw":
+      case "ta":
+      case "te":
+      case "tk":
+      case "ur":
+      case "zu":
+        return count == 1 ? 0 : 1;
+
+      case "am":
+      case "bh":
+      case "fil":
+      case "fr":
+      case "gun":
+      case "hi":
+      case "hy":
+      case "ln":
+      case "mg":
+      case "nso":
+      case "xbr":
+      case "ti":
+      case "wa":
+        return count === 0 || count === 1 ? 0 : 1;
+
+      case "be":
+      case "bs":
+      case "hr":
+      case "ru":
+      case "sr":
+      case "uk":
+        return count % 10 == 1 && count % 100 != 11 ? 0 : count % 10 >= 2 && count % 10 <= 4 && (count % 100 < 10 || count % 100 >= 20) ? 1 : 2;
+
+      case "cs":
+      case "sk":
+        return count == 1 ? 0 : count >= 2 && count <= 4 ? 1 : 2;
+
+      case "ga":
+        return count == 1 ? 0 : count == 2 ? 1 : 2;
+
+      case "lt":
+        return count % 10 == 1 && count % 100 != 11 ? 0 : count % 10 >= 2 && (count % 100 < 10 || count % 100 >= 20) ? 1 : 2;
+
+      case "sl":
+        return count % 100 == 1 ? 0 : count % 100 == 2 ? 1 : count % 100 == 3 || count % 100 == 4 ? 2 : 3;
+
+      case "mk":
+        return count % 10 == 1 ? 0 : 1;
+
+      case "mt":
+        return count == 1 ? 0 : count === 0 || count % 100 > 1 && count % 100 < 11 ? 1 : count % 100 > 10 && count % 100 < 20 ? 2 : 3;
+
+      case "lv":
+        return count === 0 ? 0 : count % 10 == 1 && count % 100 != 11 ? 1 : 2;
+
+      case "pl":
+        return count == 1 ? 0 : count % 10 >= 2 && count % 10 <= 4 && (count % 100 < 12 || count % 100 > 14) ? 1 : 2;
+
+      case "cy":
+        return count == 1 ? 0 : count == 2 ? 1 : count == 8 || count == 11 ? 2 : 3;
+
+      case "ro":
+        return count == 1 ? 0 : count === 0 || count % 100 > 0 && count % 100 < 20 ? 1 : 2;
+
+      case "ar":
+        return count === 0 ? 0 : count == 1 ? 1 : count == 2 ? 2 : count % 100 >= 3 && count % 100 <= 10 ? 3 : count % 100 >= 11 && count % 100 <= 99 ? 4 : 5;
+
+      default:
+        return 0;
+    }
+  };
+
+  return Lang;
+});
+
+(function () {
+  Lang = new Lang();
+  Lang.setMessages({
+    "en.auth": {
+      "failed": "These credentials do not match our records.",
+      "throttle": "Too many login attempts. Please try again in :seconds seconds."
+    },
+    "en.messages": {
+      "cookies": "By continuing to browse this site, you content to our use of cookies \n    to improve your online experience.",
+      "learn_more": "learn more",
+      "slogan": "Discover, share and live unique experieences near you."
+    },
+    "en.pagination": {
+      "next": "Next &raquo;",
+      "previous": "&laquo; Previous"
+    },
+    "en.passwords": {
+      "reset": "Your password has been reset!",
+      "sent": "We have e-mailed your password reset link!",
+      "throttled": "Please wait before retrying.",
+      "token": "This password reset token is invalid.",
+      "user": "We can't find a user with that e-mail address."
+    },
+    "en.validation": {
+      "accepted": "The :attribute must be accepted.",
+      "active_url": "The :attribute is not a valid URL.",
+      "after": "The :attribute must be a date after :date.",
+      "after_or_equal": "The :attribute must be a date after or equal to :date.",
+      "alpha": "The :attribute may only contain letters.",
+      "alpha_dash": "The :attribute may only contain letters, numbers, dashes and underscores.",
+      "alpha_num": "The :attribute may only contain letters and numbers.",
+      "array": "The :attribute must be an array.",
+      "attributes": [],
+      "before": "The :attribute must be a date before :date.",
+      "before_or_equal": "The :attribute must be a date before or equal to :date.",
+      "between": {
+        "array": "The :attribute must have between :min and :max items.",
+        "file": "The :attribute must be between :min and :max kilobytes.",
+        "numeric": "The :attribute must be between :min and :max.",
+        "string": "The :attribute must be between :min and :max characters."
+      },
+      "boolean": "The :attribute field must be true or false.",
+      "confirmed": "The :attribute confirmation does not match.",
+      "custom": {
+        "attribute-name": {
+          "rule-name": "custom-message"
+        }
+      },
+      "date": "The :attribute is not a valid date.",
+      "date_equals": "The :attribute must be a date equal to :date.",
+      "date_format": "The :attribute does not match the format :format.",
+      "different": "The :attribute and :other must be different.",
+      "digits": "The :attribute must be :digits digits.",
+      "digits_between": "The :attribute must be between :min and :max digits.",
+      "dimensions": "The :attribute has invalid image dimensions.",
+      "distinct": "The :attribute field has a duplicate value.",
+      "email": "The :attribute must be a valid email address.",
+      "ends_with": "The :attribute must end with one of the following: :values.",
+      "exists": "The selected :attribute is invalid.",
+      "file": "The :attribute must be a file.",
+      "filled": "The :attribute field must have a value.",
+      "gt": {
+        "array": "The :attribute must have more than :value items.",
+        "file": "The :attribute must be greater than :value kilobytes.",
+        "numeric": "The :attribute must be greater than :value.",
+        "string": "The :attribute must be greater than :value characters."
+      },
+      "gte": {
+        "array": "The :attribute must have :value items or more.",
+        "file": "The :attribute must be greater than or equal :value kilobytes.",
+        "numeric": "The :attribute must be greater than or equal :value.",
+        "string": "The :attribute must be greater than or equal :value characters."
+      },
+      "image": "The :attribute must be an image.",
+      "in": "The selected :attribute is invalid.",
+      "in_array": "The :attribute field does not exist in :other.",
+      "integer": "The :attribute must be an integer.",
+      "ip": "The :attribute must be a valid IP address.",
+      "ipv4": "The :attribute must be a valid IPv4 address.",
+      "ipv6": "The :attribute must be a valid IPv6 address.",
+      "json": "The :attribute must be a valid JSON string.",
+      "lt": {
+        "array": "The :attribute must have less than :value items.",
+        "file": "The :attribute must be less than :value kilobytes.",
+        "numeric": "The :attribute must be less than :value.",
+        "string": "The :attribute must be less than :value characters."
+      },
+      "lte": {
+        "array": "The :attribute must not have more than :value items.",
+        "file": "The :attribute must be less than or equal :value kilobytes.",
+        "numeric": "The :attribute must be less than or equal :value.",
+        "string": "The :attribute must be less than or equal :value characters."
+      },
+      "max": {
+        "array": "The :attribute may not have more than :max items.",
+        "file": "The :attribute may not be greater than :max kilobytes.",
+        "numeric": "The :attribute may not be greater than :max.",
+        "string": "The :attribute may not be greater than :max characters."
+      },
+      "mimes": "The :attribute must be a file of type: :values.",
+      "mimetypes": "The :attribute must be a file of type: :values.",
+      "min": {
+        "array": "The :attribute must have at least :min items.",
+        "file": "The :attribute must be at least :min kilobytes.",
+        "numeric": "The :attribute must be at least :min.",
+        "string": "The :attribute must be at least :min characters."
+      },
+      "not_in": "The selected :attribute is invalid.",
+      "not_regex": "The :attribute format is invalid.",
+      "numeric": "The :attribute must be a number.",
+      "password": "The password is incorrect.",
+      "present": "The :attribute field must be present.",
+      "regex": "The :attribute format is invalid.",
+      "required": "The :attribute field is required.",
+      "required_if": "The :attribute field is required when :other is :value.",
+      "required_unless": "The :attribute field is required unless :other is in :values.",
+      "required_with": "The :attribute field is required when :values is present.",
+      "required_with_all": "The :attribute field is required when :values are present.",
+      "required_without": "The :attribute field is required when :values is not present.",
+      "required_without_all": "The :attribute field is required when none of :values are present.",
+      "same": "The :attribute and :other must match.",
+      "size": {
+        "array": "The :attribute must contain :size items.",
+        "file": "The :attribute must be :size kilobytes.",
+        "numeric": "The :attribute must be :size.",
+        "string": "The :attribute must be :size characters."
+      },
+      "starts_with": "The :attribute must start with one of the following: :values.",
+      "string": "The :attribute must be a string.",
+      "timezone": "The :attribute must be a valid zone.",
+      "unique": "The :attribute has already been taken.",
+      "uploaded": "The :attribute failed to upload.",
+      "url": "The :attribute format is invalid.",
+      "uuid": "The :attribute must be a valid UUID."
+    },
+    "es.auth": {
+      "failed": "Estas credenciales no coinciden con nuestros registros.",
+      "throttle": "Demasiados intentos de acceso. Por favor intente nuevamente en :seconds segundos."
+    },
+    "es.messages": {
+      "cookies": "Al continuar navegando por este sitio, usted se contenta con nuestro uso de cookies \n    para mejorar su experiencia en l\xEDnea",
+      "learn_more": "aprende m\xE1s",
+      "slogan": "Descubre, comparte y vive experiencias \xFAnicas cerca de ti."
+    },
+    "es.pagination": {
+      "next": "Siguiente &raquo;",
+      "previous": "&laquo; Anterior"
+    },
+    "es.passwords": {
+      "password": "Las contrase\xF1as deben coincidir y contener al menos 8 caracteres",
+      "reset": "\xA1Tu contrase\xF1a ha sido restablecida!",
+      "sent": "\xA1Te hemos enviado por correo el enlace para restablecer tu contrase\xF1a!",
+      "throttled": "Por favor espera antes de intentar de nuevo.",
+      "token": "El token de recuperaci\xF3n de contrase\xF1a es inv\xE1lido.",
+      "user": "No podemos encontrar ning\xFAn usuario con ese correo electr\xF3nico."
+    },
+    "es.validation": {
+      "accepted": ":attribute debe ser aceptado.",
+      "active_url": ":attribute no es una URL v\xE1lida.",
+      "after": ":attribute debe ser una fecha posterior a :date.",
+      "after_or_equal": ":attribute debe ser una fecha posterior o igual a :date.",
+      "alpha": ":attribute s\xF3lo debe contener letras.",
+      "alpha_dash": ":attribute s\xF3lo debe contener letras, n\xFAmeros y guiones.",
+      "alpha_num": ":attribute s\xF3lo debe contener letras y n\xFAmeros.",
+      "array": ":attribute debe ser un conjunto.",
+      "attributes": {
+        "address": "direcci\xF3n",
+        "age": "edad",
+        "body": "contenido",
+        "city": "ciudad",
+        "content": "contenido",
+        "country": "pa\xEDs",
+        "date": "fecha",
+        "day": "d\xEDa",
+        "description": "descripci\xF3n",
+        "email": "correo electr\xF3nico",
+        "excerpt": "extracto",
+        "first_name": "nombre",
+        "gender": "g\xE9nero",
+        "hour": "hora",
+        "last_name": "apellido",
+        "message": "mensaje",
+        "minute": "minuto",
+        "mobile": "m\xF3vil",
+        "month": "mes",
+        "name": "nombre",
+        "password": "contrase\xF1a",
+        "password_confirmation": "confirmaci\xF3n de la contrase\xF1a",
+        "phone": "tel\xE9fono",
+        "price": "precio",
+        "second": "segundo",
+        "sex": "sexo",
+        "subject": "asunto",
+        "terms": "t\xE9rminos",
+        "time": "hora",
+        "title": "t\xEDtulo",
+        "username": "usuario",
+        "year": "a\xF1o"
+      },
+      "before": ":attribute debe ser una fecha anterior a :date.",
+      "before_or_equal": ":attribute debe ser una fecha anterior o igual a :date.",
+      "between": {
+        "array": ":attribute tiene que tener entre :min - :max \xEDtems.",
+        "file": ":attribute debe pesar entre :min - :max kilobytes.",
+        "numeric": ":attribute tiene que estar entre :min - :max.",
+        "string": ":attribute tiene que tener entre :min - :max caracteres."
+      },
+      "boolean": "El campo :attribute debe tener un valor verdadero o falso.",
+      "confirmed": "La confirmaci\xF3n de :attribute no coincide.",
+      "custom": {
+        "email": {
+          "unique": "El :attribute ya ha sido registrado."
+        },
+        "password": {
+          "min": "La :attribute debe contener m\xE1s de :min caracteres"
+        }
+      },
+      "date": ":attribute no es una fecha v\xE1lida.",
+      "date_equals": ":attribute debe ser una fecha igual a :date.",
+      "date_format": ":attribute no corresponde al formato :format.",
+      "different": ":attribute y :other deben ser diferentes.",
+      "digits": ":attribute debe tener :digits d\xEDgitos.",
+      "digits_between": ":attribute debe tener entre :min y :max d\xEDgitos.",
+      "dimensions": "Las dimensiones de la imagen :attribute no son v\xE1lidas.",
+      "distinct": "El campo :attribute contiene un valor duplicado.",
+      "email": ":attribute no es un correo v\xE1lido",
+      "ends_with": "El campo :attribute debe finalizar con uno de los siguientes valores: :values",
+      "exists": ":attribute es inv\xE1lido.",
+      "file": "El campo :attribute debe ser un archivo.",
+      "filled": "El campo :attribute es obligatorio.",
+      "gt": {
+        "array": "El campo :attribute debe tener m\xE1s de :value elementos.",
+        "file": "El campo :attribute debe tener m\xE1s de :value kilobytes.",
+        "numeric": "El campo :attribute debe ser mayor que :value.",
+        "string": "El campo :attribute debe tener m\xE1s de :value caracteres."
+      },
+      "gte": {
+        "array": "El campo :attribute debe tener como m\xEDnimo :value elementos.",
+        "file": "El campo :attribute debe tener como m\xEDnimo :value kilobytes.",
+        "numeric": "El campo :attribute debe ser como m\xEDnimo :value.",
+        "string": "El campo :attribute debe tener como m\xEDnimo :value caracteres."
+      },
+      "image": ":attribute debe ser una imagen.",
+      "in": ":attribute es inv\xE1lido.",
+      "in_array": "El campo :attribute no existe en :other.",
+      "integer": ":attribute debe ser un n\xFAmero entero.",
+      "ip": ":attribute debe ser una direcci\xF3n IP v\xE1lida.",
+      "ipv4": ":attribute debe ser un direcci\xF3n IPv4 v\xE1lida",
+      "ipv6": ":attribute debe ser un direcci\xF3n IPv6 v\xE1lida.",
+      "json": "El campo :attribute debe tener una cadena JSON v\xE1lida.",
+      "lt": {
+        "array": "El campo :attribute debe tener menos de :value elementos.",
+        "file": "El campo :attribute debe tener menos de :value kilobytes.",
+        "numeric": "El campo :attribute debe ser menor que :value.",
+        "string": "El campo :attribute debe tener menos de :value caracteres."
+      },
+      "lte": {
+        "array": "El campo :attribute debe tener como m\xE1ximo :value elementos.",
+        "file": "El campo :attribute debe tener como m\xE1ximo :value kilobytes.",
+        "numeric": "El campo :attribute debe ser como m\xE1ximo :value.",
+        "string": "El campo :attribute debe tener como m\xE1ximo :value caracteres."
+      },
+      "max": {
+        "array": ":attribute no debe tener m\xE1s de :max elementos.",
+        "file": ":attribute no debe ser mayor que :max kilobytes.",
+        "numeric": ":attribute no debe ser mayor a :max.",
+        "string": ":attribute no debe ser mayor que :max caracteres."
+      },
+      "mimes": ":attribute debe ser un archivo con formato: :values.",
+      "mimetypes": ":attribute debe ser un archivo con formato: :values.",
+      "min": {
+        "array": ":attribute debe tener al menos :min elementos.",
+        "file": "El tama\xF1o de :attribute debe ser de al menos :min kilobytes.",
+        "numeric": "El tama\xF1o de :attribute debe ser de al menos :min.",
+        "string": ":attribute debe contener al menos :min caracteres."
+      },
+      "not_in": ":attribute es inv\xE1lido.",
+      "not_regex": "El formato del campo :attribute no es v\xE1lido.",
+      "numeric": ":attribute debe ser num\xE9rico.",
+      "password": "La contrase\xF1a es incorrecta.",
+      "present": "El campo :attribute debe estar presente.",
+      "regex": "El formato de :attribute es inv\xE1lido.",
+      "required": "El campo :attribute es obligatorio.",
+      "required_if": "El campo :attribute es obligatorio cuando :other es :value.",
+      "required_unless": "El campo :attribute es obligatorio a menos que :other est\xE9 en :values.",
+      "required_with": "El campo :attribute es obligatorio cuando :values est\xE1 presente.",
+      "required_with_all": "El campo :attribute es obligatorio cuando :values est\xE1 presente.",
+      "required_without": "El campo :attribute es obligatorio cuando :values no est\xE1 presente.",
+      "required_without_all": "El campo :attribute es obligatorio cuando ninguno de :values est\xE9n presentes.",
+      "same": ":attribute y :other deben coincidir.",
+      "size": {
+        "array": ":attribute debe contener :size elementos.",
+        "file": "El tama\xF1o de :attribute debe ser :size kilobytes.",
+        "numeric": "El tama\xF1o de :attribute debe ser :size.",
+        "string": ":attribute debe contener :size caracteres."
+      },
+      "starts_with": "El campo :attribute debe comenzar con uno de los siguientes valores: :values",
+      "string": "El campo :attribute debe ser una cadena de caracteres.",
+      "timezone": "El :attribute debe ser una zona v\xE1lida.",
+      "unique": "El campo :attribute ya ha sido registrado.",
+      "uploaded": "Subir :attribute ha fallado.",
+      "url": "El formato :attribute es inv\xE1lido.",
+      "uuid": "El campo :attribute debe ser un UUID v\xE1lido."
+    },
+    "fr.auth": {
+      "failed": "Ces identifiants ne correspondent pas \xE0 nos enregistrements",
+      "throttle": "Tentatives de connexion trop nombreuses. Veuillez essayer de nouveau dans :seconds secondes."
+    },
+    "fr.messages": {
+      "cookies": "En poursuivant votre navigation sur ce site, vous vous contentez de notre utilisation \n        des cookies pour am\xE9liorer votre exp\xE9rience en ligne",
+      "learn": "en savoir plus",
+      "slogan": "D\xE9couvrez, partagez et vivez des exp\xE9riences uniques pr\xE8s de chez vous."
+    },
+    "fr.pagination": {
+      "next": "Suivant &raquo;",
+      "previous": "&laquo; Pr\xE9c\xE9dent"
+    },
+    "fr.passwords": {
+      "password": "Les mots de passe doivent contenir au moins huit caract\xE8res et \xEAtre identiques.",
+      "reset": "Votre mot de passe a \xE9t\xE9 r\xE9initialis\xE9 !",
+      "sent": "Nous vous avons envoy\xE9 par email le lien de r\xE9initialisation du mot de passe !",
+      "throttled": "Veuillez attendre afin de r\xE9-essayer.",
+      "token": "Ce jeton de r\xE9initialisation du mot de passe n'est pas valide.",
+      "user": "Aucun utilisateur n'a \xE9t\xE9 trouv\xE9 avec cette adresse email."
+    },
+    "fr.validation": {
+      "accepted": "Le champ :attribute doit \xEAtre accept\xE9.",
+      "active_url": "Le champ :attribute n'est pas une URL valide.",
+      "after": "Le champ :attribute doit \xEAtre une date post\xE9rieure au :date.",
+      "after_or_equal": "Le champ :attribute doit \xEAtre une date post\xE9rieure ou \xE9gale au :date.",
+      "alpha": "Le champ :attribute doit contenir uniquement des lettres.",
+      "alpha_dash": "Le champ :attribute doit contenir uniquement des lettres, des chiffres et des tirets.",
+      "alpha_num": "Le champ :attribute doit contenir uniquement des chiffres et des lettres.",
+      "array": "Le champ :attribute doit \xEAtre un tableau.",
+      "attributes": {
+        "address": "adresse",
+        "age": "\xE2ge",
+        "available": "disponible",
+        "city": "ville",
+        "content": "contenu",
+        "country": "pays",
+        "date": "date",
+        "day": "jour",
+        "description": "description",
+        "email": "adresse email",
+        "excerpt": "extrait",
+        "first_name": "pr\xE9nom",
+        "gender": "genre",
+        "hour": "heure",
+        "last_name": "nom",
+        "minute": "minute",
+        "mobile": "portable",
+        "month": "mois",
+        "name": "nom",
+        "password": "mot de passe",
+        "password_confirmation": "confirmation du mot de passe",
+        "phone": "t\xE9l\xE9phone",
+        "second": "seconde",
+        "sex": "sexe",
+        "size": "taille",
+        "time": "heure",
+        "title": "titre",
+        "username": "nom d'utilisateur",
+        "year": "ann\xE9e"
+      },
+      "before": "Le champ :attribute doit \xEAtre une date ant\xE9rieure au :date.",
+      "before_or_equal": "Le champ :attribute doit \xEAtre une date ant\xE9rieure ou \xE9gale au :date.",
+      "between": {
+        "array": "Le tableau :attribute doit contenir entre :min et :max \xE9l\xE9ments.",
+        "file": "La taille du fichier de :attribute doit \xEAtre comprise entre :min et :max kilo-octets.",
+        "numeric": "La valeur de :attribute doit \xEAtre comprise entre :min et :max.",
+        "string": "Le texte :attribute doit contenir entre :min et :max caract\xE8res."
+      },
+      "boolean": "Le champ :attribute doit \xEAtre vrai ou faux.",
+      "confirmed": "Le champ de confirmation :attribute ne correspond pas.",
+      "custom": {
+        "attribute-name": {
+          "rule-name": "custom-message"
+        }
+      },
+      "date": "Le champ :attribute n'est pas une date valide.",
+      "date_equals": "Le champ :attribute doit \xEAtre une date \xE9gale \xE0 :date.",
+      "date_format": "Le champ :attribute ne correspond pas au format :format.",
+      "different": "Les champs :attribute et :other doivent \xEAtre diff\xE9rents.",
+      "digits": "Le champ :attribute doit contenir :digits chiffres.",
+      "digits_between": "Le champ :attribute doit contenir entre :min et :max chiffres.",
+      "dimensions": "La taille de l'image :attribute n'est pas conforme.",
+      "distinct": "Le champ :attribute a une valeur en double.",
+      "email": "Le champ :attribute doit \xEAtre une adresse email valide.",
+      "ends_with": "Le champ :attribute doit se terminer par une des valeurs suivantes : :values",
+      "exists": "Le champ :attribute s\xE9lectionn\xE9 est invalide.",
+      "file": "Le champ :attribute doit \xEAtre un fichier.",
+      "filled": "Le champ :attribute doit avoir une valeur.",
+      "gt": {
+        "array": "Le tableau :attribute doit contenir plus de :value \xE9l\xE9ments.",
+        "file": "La taille du fichier de :attribute doit \xEAtre sup\xE9rieure \xE0 :value kilo-octets.",
+        "numeric": "La valeur de :attribute doit \xEAtre sup\xE9rieure \xE0 :value.",
+        "string": "Le texte :attribute doit contenir plus de :value caract\xE8res."
+      },
+      "gte": {
+        "array": "Le tableau :attribute doit contenir au moins :value \xE9l\xE9ments.",
+        "file": "La taille du fichier de :attribute doit \xEAtre sup\xE9rieure ou \xE9gale \xE0 :value kilo-octets.",
+        "numeric": "La valeur de :attribute doit \xEAtre sup\xE9rieure ou \xE9gale \xE0 :value.",
+        "string": "Le texte :attribute doit contenir au moins :value caract\xE8res."
+      },
+      "image": "Le champ :attribute doit \xEAtre une image.",
+      "in": "Le champ :attribute est invalide.",
+      "in_array": "Le champ :attribute n'existe pas dans :other.",
+      "integer": "Le champ :attribute doit \xEAtre un entier.",
+      "ip": "Le champ :attribute doit \xEAtre une adresse IP valide.",
+      "ipv4": "Le champ :attribute doit \xEAtre une adresse IPv4 valide.",
+      "ipv6": "Le champ :attribute doit \xEAtre une adresse IPv6 valide.",
+      "json": "Le champ :attribute doit \xEAtre un document JSON valide.",
+      "lt": {
+        "array": "Le tableau :attribute doit contenir moins de :value \xE9l\xE9ments.",
+        "file": "La taille du fichier de :attribute doit \xEAtre inf\xE9rieure \xE0 :value kilo-octets.",
+        "numeric": "La valeur de :attribute doit \xEAtre inf\xE9rieure \xE0 :value.",
+        "string": "Le texte :attribute doit contenir moins de :value caract\xE8res."
+      },
+      "lte": {
+        "array": "Le tableau :attribute doit contenir au plus :value \xE9l\xE9ments.",
+        "file": "La taille du fichier de :attribute doit \xEAtre inf\xE9rieure ou \xE9gale \xE0 :value kilo-octets.",
+        "numeric": "La valeur de :attribute doit \xEAtre inf\xE9rieure ou \xE9gale \xE0 :value.",
+        "string": "Le texte :attribute doit contenir au plus :value caract\xE8res."
+      },
+      "max": {
+        "array": "Le tableau :attribute ne peut contenir plus de :max \xE9l\xE9ments.",
+        "file": "La taille du fichier de :attribute ne peut pas d\xE9passer :max kilo-octets.",
+        "numeric": "La valeur de :attribute ne peut \xEAtre sup\xE9rieure \xE0 :max.",
+        "string": "Le texte de :attribute ne peut contenir plus de :max caract\xE8res."
+      },
+      "mimes": "Le champ :attribute doit \xEAtre un fichier de type : :values.",
+      "mimetypes": "Le champ :attribute doit \xEAtre un fichier de type : :values.",
+      "min": {
+        "array": "Le tableau :attribute doit contenir au moins :min \xE9l\xE9ments.",
+        "file": "La taille du fichier de :attribute doit \xEAtre sup\xE9rieure \xE0 :min kilo-octets.",
+        "numeric": "La valeur de :attribute doit \xEAtre sup\xE9rieure ou \xE9gale \xE0 :min.",
+        "string": "Le texte :attribute doit contenir au moins :min caract\xE8res."
+      },
+      "not_in": "Le champ :attribute s\xE9lectionn\xE9 n'est pas valide.",
+      "not_regex": "Le format du champ :attribute n'est pas valide.",
+      "numeric": "Le champ :attribute doit contenir un nombre.",
+      "password": "Le mot de passe est incorrect",
+      "present": "Le champ :attribute doit \xEAtre pr\xE9sent.",
+      "regex": "Le format du champ :attribute est invalide.",
+      "required": "Le champ :attribute est obligatoire.",
+      "required_if": "Le champ :attribute est obligatoire quand la valeur de :other est :value.",
+      "required_unless": "Le champ :attribute est obligatoire sauf si :other est :values.",
+      "required_with": "Le champ :attribute est obligatoire quand :values est pr\xE9sent.",
+      "required_with_all": "Le champ :attribute est obligatoire quand :values sont pr\xE9sents.",
+      "required_without": "Le champ :attribute est obligatoire quand :values n'est pas pr\xE9sent.",
+      "required_without_all": "Le champ :attribute est requis quand aucun de :values n'est pr\xE9sent.",
+      "same": "Les champs :attribute et :other doivent \xEAtre identiques.",
+      "size": {
+        "array": "Le tableau :attribute doit contenir :size \xE9l\xE9ments.",
+        "file": "La taille du fichier de :attribute doit \xEAtre de :size kilo-octets.",
+        "numeric": "La valeur de :attribute doit \xEAtre :size.",
+        "string": "Le texte de :attribute doit contenir :size caract\xE8res."
+      },
+      "starts_with": "Le champ :attribute doit commencer avec une des valeurs suivantes : :values",
+      "string": "Le champ :attribute doit \xEAtre une cha\xEEne de caract\xE8res.",
+      "timezone": "Le champ :attribute doit \xEAtre un fuseau horaire valide.",
+      "unique": "La valeur du champ :attribute est d\xE9j\xE0 utilis\xE9e.",
+      "uploaded": "Le fichier du champ :attribute n'a pu \xEAtre t\xE9l\xE9vers\xE9.",
+      "url": "Le format de l'URL de :attribute n'est pas valide.",
+      "uuid": "Le champ :attribute doit \xEAtre un UUID valide"
+    },
+    "it.auth": {
+      "failed": "Credenziali non corrispondenti ai dati registrati.",
+      "throttle": "Troppi tentativi di accesso. Riprova tra :seconds secondi."
+    },
+    "it.messages": {
+      "cookies": "Continuando a navigare in questo sito, accetti il \u200B\u200Bnostro uso dei cookie per migliorare \n    la tua esperienza online",
+      "learn_more": "Per saperne di pi\xF9",
+      "slogan": "Scopri, condividi e vivi esperienze uniche vicino a te."
+    },
+    "it.pagination": {
+      "next": "Successivo &raquo;",
+      "previous": "&laquo; Precedente"
+    },
+    "it.passwords": {
+      "password": "Le password devono essere di almeno 8 caratteri e devono coincidere.",
+      "reset": "La password \xE8 stata reimpostata!",
+      "sent": "Promemoria della password inviato!",
+      "throttled": "Please wait before retrying.",
+      "token": "Questo token per la reimpostazione della password non \xE8 valido.",
+      "user": "Non esiste un utente associato a questo indirizzo e-mail."
+    },
+    "it.validation": {
+      "accepted": ":attribute deve essere accettato.",
+      "active_url": ":attribute non \xE8 un URL valido.",
+      "after": ":attribute deve essere una data successiva al :date.",
+      "after_or_equal": ":attribute deve essere una data successiva o uguale al :date.",
+      "alpha": ":attribute pu\xF2 contenere solo lettere.",
+      "alpha_dash": ":attribute pu\xF2 contenere solo lettere, numeri e trattini.",
+      "alpha_num": ":attribute pu\xF2 contenere solo lettere e numeri.",
+      "array": ":attribute deve essere un array.",
+      "attributes": {
+        "address": "indirizzo",
+        "age": "et\xE0",
+        "available": "disponibile",
+        "city": "citt\xE0",
+        "content": "contenuto",
+        "country": "paese",
+        "date": "data",
+        "day": "giorno",
+        "description": "descrizione",
+        "excerpt": "estratto",
+        "first_name": "nome",
+        "gender": "genere",
+        "hour": "ora",
+        "last_name": "cognome",
+        "minute": "minuto",
+        "mobile": "cellulare",
+        "month": "mese",
+        "name": "nome",
+        "password_confirmation": "conferma password",
+        "phone": "telefono",
+        "second": "secondo",
+        "sex": "sesso",
+        "size": "dimensione",
+        "time": "ora",
+        "title": "titolo",
+        "username": "nome utente",
+        "year": "anno"
+      },
+      "before": ":attribute deve essere una data precedente al :date.",
+      "before_or_equal": ":attribute deve essere una data precedente o uguale al :date.",
+      "between": {
+        "array": ":attribute deve avere tra :min - :max elementi.",
+        "file": ":attribute deve trovarsi tra :min - :max kilobyte.",
+        "numeric": ":attribute deve trovarsi tra :min - :max.",
+        "string": ":attribute deve trovarsi tra :min - :max caratteri."
+      },
+      "boolean": "Il campo :attribute deve essere vero o falso.",
+      "confirmed": "Il campo di conferma per :attribute non coincide.",
+      "custom": {
+        "attribute-name": {
+          "rule-name": "custom-message"
+        }
+      },
+      "date": ":attribute non \xE8 una data valida.",
+      "date_equals": ":attribute deve essere una data e uguale a :date.",
+      "date_format": ":attribute non coincide con il formato :format.",
+      "different": ":attribute e :other devono essere differenti.",
+      "digits": ":attribute deve essere di :digits cifre.",
+      "digits_between": ":attribute deve essere tra :min e :max cifre.",
+      "dimensions": "Le dimensioni dell'immagine di :attribute non sono valide.",
+      "distinct": ":attribute contiene un valore duplicato.",
+      "email": ":attribute non \xE8 valido.",
+      "ends_with": ":attribute deve finire con uno dei seguenti valori: :values",
+      "exists": ":attribute selezionato non \xE8 valido.",
+      "file": ":attribute deve essere un file.",
+      "filled": "Il campo :attribute deve contenere un valore.",
+      "gt": {
+        "array": ":attribute deve contenere pi\xF9 di :value elementi.",
+        "file": ":attribute deve essere maggiore di :value kilobyte.",
+        "numeric": ":attribute deve essere maggiore di :value.",
+        "string": ":attribute deve contenere pi\xF9 di :value caratteri."
+      },
+      "gte": {
+        "array": ":attribute deve contenere un numero di elementi uguale o maggiore di :value.",
+        "file": ":attribute deve essere uguale o maggiore di :value kilobyte.",
+        "numeric": ":attribute deve essere uguale o maggiore di :value.",
+        "string": ":attribute deve contenere un numero di caratteri uguale o maggiore di :value."
+      },
+      "image": ":attribute deve essere un'immagine.",
+      "in": ":attribute selezionato non \xE8 valido.",
+      "in_array": "Il valore del campo :attribute non esiste in :other.",
+      "integer": ":attribute deve essere un numero intero.",
+      "ip": ":attribute deve essere un indirizzo IP valido.",
+      "ipv4": ":attribute deve essere un indirizzo IPv4 valido.",
+      "ipv6": ":attribute deve essere un indirizzo IPv6 valido.",
+      "json": ":attribute deve essere una stringa JSON valida.",
+      "lt": {
+        "array": ":attribute deve contenere meno di :value elementi.",
+        "file": ":attribute deve essere minore di :value kilobyte.",
+        "numeric": ":attribute deve essere minore di :value.",
+        "string": ":attribute deve contenere meno di :value caratteri."
+      },
+      "lte": {
+        "array": ":attribute deve contenere un numero di elementi minore o uguale a :value.",
+        "file": ":attribute deve essere minore o uguale a :value kilobyte.",
+        "numeric": ":attribute deve essere minore o uguale a :value.",
+        "string": ":attribute deve contenere un numero di caratteri minore o uguale a :value."
+      },
+      "max": {
+        "array": ":attribute non pu\xF2 avere pi\xF9 di :max elementi.",
+        "file": ":attribute non pu\xF2 essere superiore a :max kilobyte.",
+        "numeric": ":attribute non pu\xF2 essere superiore a :max.",
+        "string": ":attribute non pu\xF2 contenere pi\xF9 di :max caratteri."
+      },
+      "mimes": ":attribute deve essere del tipo: :values.",
+      "mimetypes": ":attribute deve essere del tipo: :values.",
+      "min": {
+        "array": ":attribute deve avere almeno :min elementi.",
+        "file": ":attribute deve essere almeno di :min kilobyte.",
+        "numeric": ":attribute deve essere almeno :min.",
+        "string": ":attribute deve contenere almeno :min caratteri."
+      },
+      "not_in": "Il valore selezionato per :attribute non \xE8 valido.",
+      "not_regex": "Il formato di :attribute non \xE8 valido.",
+      "numeric": ":attribute deve essere un numero.",
+      "present": "Il campo :attribute deve essere presente.",
+      "regex": "Il formato del campo :attribute non \xE8 valido.",
+      "required": "Il campo :attribute \xE8 richiesto.",
+      "required_if": "Il campo :attribute \xE8 richiesto quando :other \xE8 :value.",
+      "required_unless": "Il campo :attribute \xE8 richiesto a meno che :other sia in :values.",
+      "required_with": "Il campo :attribute \xE8 richiesto quando :values \xE8 presente.",
+      "required_with_all": "Il campo :attribute \xE8 richiesto quando :values sono presenti.",
+      "required_without": "Il campo :attribute \xE8 richiesto quando :values non \xE8 presente.",
+      "required_without_all": "Il campo :attribute \xE8 richiesto quando nessuno di :values \xE8 presente.",
+      "same": ":attribute e :other devono coincidere.",
+      "size": {
+        "array": ":attribute deve contenere :size elementi.",
+        "file": ":attribute deve essere :size kilobyte.",
+        "numeric": ":attribute deve essere :size.",
+        "string": ":attribute deve contenere :size caratteri."
+      },
+      "starts_with": ":attribute deve iniziare con uno dei seguenti: :values",
+      "string": ":attribute deve essere una stringa.",
+      "timezone": ":attribute deve essere una zona valida.",
+      "unique": ":attribute \xE8 stato gi\xE0 utilizzato.",
+      "uploaded": ":attribute non \xE8 stato caricato.",
+      "url": "Il formato del campo :attribute non \xE8 valido.",
+      "uuid": ":attribute deve essere un UUID valido."
+    }
+  });
+})();
 
 /***/ }),
 
