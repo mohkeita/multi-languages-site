@@ -11,12 +11,14 @@
 |
 */
 
+use App\Post;
+
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
     'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
 ], function() {
 
-    Route::view('/', 'pages.home')->name('home');
+    Route::view('/', 'pages.home', ['posts' => Post::all()])->name('home');
 
     Auth::routes();
 
