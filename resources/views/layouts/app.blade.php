@@ -24,6 +24,7 @@
         @include('layouts.partials._nav')
 
         <main class="py-4">
+            <cookie-banner-consentment></cookie-banner-consentment>
             @yield('content')
         </main>
         <div class="contaner">
