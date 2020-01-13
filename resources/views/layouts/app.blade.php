@@ -24,7 +24,7 @@
         @include('layouts.partials._nav')
 
         <main class="py-4">
-            <cookie-banner-consentment></cookie-banner-consentment>
+
             @yield('content')
         </main>
         <div class="contaner">
@@ -40,7 +40,8 @@
         </div>
 
         <div class="container">
-            <p>{{ __('messages.cookies') }}<a href="#"> {{ __('messages.learn_more') }}</a><button type="button">OK</button></p></div>
+            <cookie-banner-consentment></cookie-banner-consentment>
+             </div>
     </div>
 </body>
 </html>
