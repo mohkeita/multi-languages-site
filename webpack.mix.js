@@ -1,5 +1,6 @@
 const mix = require('laravel-mix');
 const WebpackShellPlugin = require('webpack-shell-plugin');
+const path = require('path');
 
 /*
  |--------------------------------------------------------------------------
@@ -17,7 +18,15 @@ mix.js('resources/js/app.js', 'public/js')
     .webpackConfig({
         plugins: [
             new WebpackShellPlugin({
-                onBuildStart:['php artisan lang:js resources/js/messages.js --no-lib --quiet'],
+                onBuildStart:['php artisan lang:js resources/js/messages.js --no-lib --quiet',
+                    'php artisan ziggy:generate resources/js/ziggy.js --quiet'
+                ],
                 onBuildEnd:[]})
-        ]
+        ],
+        resolve: {
+            alias: {
+
+                    ziggy: path.resolve('vendor/tightenco/ziggy/dist/js/route.js'),
+},
+},
 });

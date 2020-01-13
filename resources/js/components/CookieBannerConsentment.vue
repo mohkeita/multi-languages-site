@@ -1,6 +1,6 @@
 <template>
     <p :class="shoudBeDisplayed ? 'block' : 'hidden'">{{ __('messages.cookies') }}
-        <a href="#"> {{ __('messages.learn_more') }}</a>
+        <a :href="route('dashboard')"> {{ __('messages.learn_more') }}</a>
         <button type="button" @click="handleCookieStorageApproval">OK</button>
     </p>
 

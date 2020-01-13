@@ -4,10 +4,14 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+
 require('./bootstrap');
 import Lang from 'lang.js';
-
 import messages from './messages';
+import route from 'ziggy';
+import {Ziggy} from './ziggy';
+
+
 const lang = new Lang({
     messages: messages
 });
@@ -18,7 +22,8 @@ Vue.mixin({
     methods: {
         __(...args) {
             return lang.get(...args);
-        }
+        },
+        route: (name, params, absolute) => route(name, params, absolute, Ziggy),
     }
 })
 
